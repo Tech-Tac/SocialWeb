@@ -1,3 +1,37 @@
+# SocialWeb
+
+v1.0
+
+A social network application with features like user accounts, friend system, posts, comments, likes, groups, and more!
+
+Made with ❤ by @Tech-Tac.
+
+## Installation
+
+### Project Dependencies
+
+- XAMPP v3.3.0
+  - Or:
+  - PHP ^v8.1
+  - MySQL 10.4.20-MariaDB or newer
+- Composer v2.3.10 or newer
+- Node v18 or newer
+- Laravel v10.10
+
+**Note: You can install the latest version of MySQL, Composer or Node**, but refer to said versions if problems are found.
+
+### Installation steps
+
+After succesfully installing the required versions of PHP, MySQL, Composer and Node follow these steps:
+
+1. Create database `SocialWeb` with encoding `utf8mb4_unicode_ci`.
+2. Run `composer install`.
+3. Run `npm install`.
+4. Configure `.env` file.
+5. Make sure the project is installed properly.
+6. Run the project by executing `npm run build` and `php artisan serve`
+7. Congratulations! The project is up and running!
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
