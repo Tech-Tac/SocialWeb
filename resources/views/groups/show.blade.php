@@ -6,7 +6,7 @@
 		<br><br>
 		<h4>{{ $group->name }}</h4>
 		<p>{{ $group->description }}</p>
-		<p>{{ count($group->memberships) }} members</p>
+		<p>{{ $group->members->count() }} members, {{ $group->posts->count() }} posts</p>
 		@if (in_array(Auth::user()->id, $group->memberships->pluck('user_id')->toArray()))
 			<form action="{{ route('groups.leave', $group) }}" method="post">
 				@csrf

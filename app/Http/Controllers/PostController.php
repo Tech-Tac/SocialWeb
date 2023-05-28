@@ -52,16 +52,21 @@ class PostController extends Controller
         ]);
 
         if (!$request->group || ($request->group && in_array($request->group, Auth::user()->groups->pluck("id")->toArray()))) {
-            Post::create([
+            $post = Post::create([
                 'user_id' => Auth::user()->id,
                 'group_id' => $request->group,
                 'title' => $request->title,
                 'content' => $request->content,
             ]);
+
+            Session::flash("message", "Post created succesfully!");
+            Session::flash("alert-type", "success");
+
+            return redirect(route('posts.show', $post));
         }
 
-        Session::flash("message", "Post created succesfully!");
-        Session::flash("alert-type", "success");
+        Session::flash("message", "An error occuerd.");
+        Session::flash("alert-type", "danger");
 
         return redirect()->back();
     }
@@ -99,6 +104,7 @@ class PostController extends Controller
 
         Session::flash("message", "Post updated succesfully!");
         Session::flash("alert-type", "success");
+
         return redirect(route('posts.show', $post));
     }
 
@@ -110,6 +116,7 @@ class PostController extends Controller
         $post->delete();
         Session::flash("message", "Post deleted succesfully!");
         Session::flash("alert-type", "success");
+
         return redirect()->back();
     }
 }

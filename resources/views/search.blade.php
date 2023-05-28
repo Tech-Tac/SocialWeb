@@ -29,7 +29,7 @@
 							<h5 class="card-title">{{ $group->name }}</h5>
 						</a>
 						<p class="card-text">{{ $group->description }}</p>
-						<p>{{ count($group->members) }} members</p>
+						<p>{{ $group->members->count() }} members, {{ $group->posts->count() }} posts</p>
 						@if (Auth::check())
 							@if (in_array(Auth::user()->id, $group->memberships->pluck('user_id')->toArray()))
 								<form action="{{ route('groups.leave', $group) }}" method="post" class="text-end">

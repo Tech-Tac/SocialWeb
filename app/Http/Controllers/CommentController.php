@@ -53,7 +53,7 @@ class CommentController extends Controller
      */
     public function show(Comment $comment)
     {
-        //
+        return redirect(route("posts.show", $comment->post))->withFragment("comment_" . $comment->id);
     }
 
     /**
