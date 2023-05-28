@@ -8,6 +8,7 @@
 			button.getElementsByClassName('like-count')[0].textContent = oldNum;
 			button.classList.toggle("btn-outline-success");
 			button.classList.toggle("btn-success");
+            toast("An error occured.","danger");
 		};
 		const request = fetch(`${location.protocol}//${location.host}/${model}/${id}/like`, {
 			method: "POST",

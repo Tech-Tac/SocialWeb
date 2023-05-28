@@ -16,34 +16,6 @@
 
 	<!-- Scripts -->
 	@vite(['resources/sass/app.scss', 'resources/js/app.js'])
-	{{-- <style>
-		body.rgb {
-			animation: bgcolor 30s linear 0ms infinite;
-			--alpha: 25%;
-		}
-
-		@keyframes bgcolor {
-			0% {
-				background-color: hsla(0deg, 100%, 50%, var(--alpha));
-			}
-
-			25% {
-				background-color: hsla(90deg, 100%, 50%, var(--alpha));
-			}
-
-			50% {
-				background-color: hsla(180deg, 100%, 50%, var(--alpha));
-			}
-
-			75% {
-				background-color: hsla(270deg, 100%, 50%, var(--alpha));
-			}
-
-			100% {
-				background-color: hsla(360deg, 100%, 50%, var(--alpha));
-			}
-		}
-	</style> --}}
 	@auth
 		<script defer>
 			const keepOnlineTimer = setInterval(function() {
@@ -55,6 +27,38 @@
 			}, 30 * 60 * 1000);
 		</script>
 	@endauth
+    <script defer>
+        function toast(text, type, options) {
+            const toasts = document.getElementById("toasts");
+
+            const toast = document.createElement("div");
+            toast.classList.add("toast");
+            if(type){
+                toast.classList.add("text-bg-" + type );
+            }
+
+            const flex = document.createElement("div");
+            flex.classList.add('d-flex');
+
+            const body = document.createElement("div");
+            body.classList.add("toast-body");
+            body.appendChild(document.createTextNode(text));
+
+            const close = document.createElement("button");
+            close.classList.add("btn-close");
+            close.classList.add("m-auto");
+            close.classList.add("me-2");
+            close.setAttribute("data-bs-dismiss","toast");
+
+            flex.appendChild(body);
+            flex.appendChild(close);
+            toast.appendChild(flex);
+            toasts.appendChild(toast);
+
+            const bsToast = new bootstrap.Toast(toast, options);
+            bsToast.show();
+        }
+    </script>
 	@stack('scripts')
 </head>
 
@@ -149,19 +153,19 @@
 		<main class="py-4">
 			@yield('content')
 		</main>
-		<div class="toast-container position-fixed bottom-0 start-0 p-3">
+		<div class="toast-container position-fixed bottom-0 start-0 p-3" id="toasts">
 			@if (Session::has('message'))
 				<div class="toast text-bg-{{ Session::get('alert-type', 'primary') }}" id="message_toast" role="alert" aria-live="assertive" aria-atomic="true">
 					<div class="d-flex">
 						<div class="toast-body">
 							{{ Session::get('message') }}
 						</div>
-						<button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+						<button type="button" class="btn-close m-auto me-2" data-bs-dismiss="toast" aria-label="Close"></button>
 					</div>
 				</div>
 				<script defer>
 					window.addEventListener("load", function() {
-						const toast = new bootstrap.Toast(document.getElementById("message_toast"));
+						const toast = bootstrap.Toast.getOrCreateInstance(document.getElementById("message_toast"));
 						toast.show();
 					});
 				</script>
