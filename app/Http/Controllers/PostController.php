@@ -61,6 +61,7 @@ class PostController extends Controller
         }
 
         Session::flash("message", "Post created succesfully!");
+        Session::flash("alert-type", "success");
 
         return redirect()->back();
     }
@@ -96,6 +97,7 @@ class PostController extends Controller
     {
         $post->delete();
         Session::flash("message", "Post deleted succesfully!");
+        Session::flash("alert-type", "success");
         return redirect()->back();
     }
 }

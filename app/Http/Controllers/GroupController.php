@@ -44,6 +44,7 @@ class GroupController extends Controller
         ]);
 
         Session::flash("message", "Group created succesfully!");
+        Session::flash("alert-type", "success");
         return redirect(route('groups.index'));
     }
 
@@ -62,7 +63,11 @@ class GroupController extends Controller
     {
         if (Membership::where(["group_id" => $group->id, "user_id" => Auth::user()->id])->count() === 0) {
             Membership::create(["group_id" => $group->id, "user_id" => Auth::user()->id]);
+            Session::flash("message", "Joined group succesfully!");
+            Session::flash("alert-type", "success");
         }
+        Session::flash("message", "Alreday joined.");
+        Session::flash("alert-type", "info");
         return redirect()->back();
     }
     /**
@@ -73,7 +78,11 @@ class GroupController extends Controller
         $membership = Membership::where(["group_id" => $group->id, "user_id" => Auth::user()->id])->first();
         if ($membership) {
             $membership->delete();
+            Session::flash("message", "Left group succesfully!");
+            Session::flash("alert-type", "success");
         }
+        Session::flash("message", "You are not a member of this group");
+        Session::flash("alert-type", "info");
         return redirect()->back();
     }
 
@@ -99,7 +108,8 @@ class GroupController extends Controller
     public function destroy(Group $group)
     {
         $group->delete();
-        Session::flash('message', 'Group deleted successfully');
+        Session::flash('message', 'Group deleted successfully!');
+        Session::flash("alert-type", "success");
         return redirect()->back();
     }
 }

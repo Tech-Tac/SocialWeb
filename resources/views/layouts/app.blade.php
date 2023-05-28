@@ -155,19 +155,19 @@
 		</main>
 		<div class="toast-container position-fixed bottom-0 start-0 p-3" id="toasts">
 			@if (Session::has('message'))
-				<div class="toast text-bg-{{ Session::get('alert-type', 'primary') }}" id="message_toast" role="alert" aria-live="assertive" aria-atomic="true">
+				{{-- <div class="toast text-bg-{{ Session::get('alert-type', 'primary') }}" id="message_toast" role="alert" aria-live="assertive" aria-atomic="true">
 					<div class="d-flex">
 						<div class="toast-body">
 							{{ Session::get('message') }}
 						</div>
 						<button type="button" class="btn-close m-auto me-2" data-bs-dismiss="toast" aria-label="Close"></button>
 					</div>
-				</div>
+				</div> --}}
 				<script defer>
 					window.addEventListener("load", function() {
-						const toast = bootstrap.Toast.getOrCreateInstance(document.getElementById("message_toast"));
-						toast.show();
+						toast("{{ Session::get('message') }}" @if (Session::has('alert-type')), "{{Session::get('alert-type')}}" @endif);
 					});
+
 				</script>
 			@endif
 			@stack('toasts')

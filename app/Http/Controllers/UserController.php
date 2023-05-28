@@ -38,10 +38,13 @@ class UserController extends Controller
     {
         if ($this->sendRequest($user)) {
             Session::flash("message", "Request sent!");
+            Session::flash("alert-type", "success");
         } elseif ($this->acceptRequest($user)) {
             Session::flash("message", "You are now friends!");
+            Session::flash("alert-type", "success");
         } elseif ($this->removeFriend($user)) {
             Session::flash("message", "Removed friend!");
+            Session::flash("alert-type", "success");
         }
 
         return redirect()->back();
@@ -117,6 +120,8 @@ class UserController extends Controller
                 "password" => Hash::make($request->password),
             ]);
         }
+        Session::flash("message", "Account updated succesfully!");
+        Session::flash("alert-type", "success");
 
         return redirect()->back();
     }
@@ -126,14 +131,16 @@ class UserController extends Controller
      */
     public function destroy()
     {
-        if (Auth::user()->comments) {
+        /* if (Auth::user()->comments) {
             Comment::where("user_id", Auth::user()->id)->delete();
         }
         if (Auth::user()->posts) {
             Post::where("user_id", Auth::user()->id)->delete();
-        }
+        } */
         User::whereId(Auth::user()->id)->delete();
         Auth::logout();
+        Session::flash("message", "Account deleted succesfully!");
+        Session::flash("alert-type", "success");
         return redirect(route("home"));
     }
 }

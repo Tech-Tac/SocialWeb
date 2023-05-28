@@ -30,6 +30,7 @@ class CommentController extends Controller
             'content' => $request->content,
         ]);
         Session::flash("message", "Comment sent succesfully!");
+        Session::flash("alert-type", "success");
         return redirect()->back()->withFragment('#post_' . $comment->post->id);;
     }
 
@@ -78,6 +79,7 @@ class CommentController extends Controller
     {
         $comment->delete();
         Session::flash("message", "Comment deleted succesfully!");
+        Session::flash("alert-type", "success");
         return redirect()->back();
     }
 }
