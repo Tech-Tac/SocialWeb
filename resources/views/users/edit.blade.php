@@ -23,7 +23,7 @@
 					</div>
 					<div class="mb-3">
 						<label for="about" class="form-label"><i class="bi bi-text-paragraph"></i> About</label>
-						<textarea name="about" id="about" class="form-control" maxlength="511">{{ Auth::user()->about }}</textarea>
+						<textarea name="about" rows="3" id="about" class="form-control" maxlength="511">{{ Auth::user()->about }}</textarea>
 					</div>
 				</fieldset>
 				<fieldset>

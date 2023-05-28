@@ -8,7 +8,7 @@
 			<input type="text" class="form-control" required name="title" maxlength="255" placeholder="Post Tile">
 		</div>
 		<div class="card-body">
-			<textarea name="content" maxlength="2047" required class="form-control" placeholder="Post content"></textarea>
+			<textarea name="content" rows="3" maxlength="2047" required class="form-control" placeholder="Post content"></textarea>
 		</div>
 		<div class="card-footer">
 			<button type="submit" class="btn btn-success">

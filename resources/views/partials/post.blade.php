@@ -53,7 +53,7 @@
 			@csrf
 			<input type="hidden" name="post_id" value="{{ $post->id }}">
 			<div class="input-group mt-2">
-				<input type="text" name="content" class="form-control" required maxlength="2047" placeholder="Leave a comment">
+				<textarea name="content" rows="1" class="form-control" required maxlength="2047" placeholder="Leave a comment"></textarea>
 				<button class="btn btn-primary" type="submit">
 					<i class="bi bi-send-fill"></i>
 					Send

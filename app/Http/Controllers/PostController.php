@@ -79,7 +79,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view("posts.edit", compact('post'));
     }
 
     /**
@@ -87,7 +87,19 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required|max:255',
+            'content' => 'required|max:2047',
+        ]);
+
+        $post->update([
+            'title' => $request->title,
+            'content' => $request->content,
+        ]);
+
+        Session::flash("message", "Post updated succesfully!");
+        Session::flash("alert-type", "success");
+        return redirect(route('posts.show', $post));
     }
 
     /**
