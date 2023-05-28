@@ -15,6 +15,11 @@
 					Joined
 				</button>
 			</form>
+			<br>
+			<a href="{{ route('groups.edit', $group) }}" class="btn btn-secondary">
+				<i class="bi bi-pencil-square"></i>
+				Edit
+			</a>
 		@else
 			<form action="{{ route('groups.join', $group) }}" method="post">
 				@csrf

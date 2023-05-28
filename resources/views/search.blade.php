@@ -31,8 +31,8 @@
 						<p class="card-text">{{ $group->description }}</p>
 						<p>{{ count($group->members) }} members</p>
 						@if (Auth::check())
-							@if (in_array(Auth::user()->id, $group->members))
-								<form action="{{ route('groups.leave', $group) }}" class="text-end" method="post">
+							@if (in_array(Auth::user()->id, $group->memberships->pluck('user_id')->toArray()))
+								<form action="{{ route('groups.leave', $group) }}" method="post" class="text-end">
 									@csrf
 									<button class="btn btn-primary" type="submit">
 										<i class="bi bi-check-circle"></i>
@@ -40,7 +40,7 @@
 									</button>
 								</form>
 							@else
-								<form action="{{ route('groups.join', $group) }}" class="text-end" method="post">
+								<form action="{{ route('groups.join', $group) }}" method="post" class="text-end">
 									@csrf
 									<button class="btn btn-primary" type="submit">
 										<i class="bi bi-plus-circle"></i>
