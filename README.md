@@ -18,8 +18,6 @@ Made with ❤ by @Tech-Tac.
 - Node v18 or newer
 - Laravel v10.10
 
----
-
 **Note: You can install the latest version of MySQL, Composer or Node**, but refer to said versions if problems are found.
 
 ### Installation steps
@@ -34,6 +32,8 @@ After succesfully installing the required versions of PHP, MySQL, Composer and N
 6. Make sure the project is installed properly.
 7. Run the project by executing `npm run build` and `php artisan serve`
 8. Congratulations! The project is up and running!
+
+---
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
