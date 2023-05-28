@@ -1,13 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-lg-10">
-				@include('partials.post', ['post' => $post])
-			</div>
-		</div>
-	</div>
+	@include('partials.post', ['post' => $post])
+
 	<script defer>
 		function likePost(postId, button) {
 			const request = fetch({{ route('posts.like', $post) }}, {

@@ -25,7 +25,7 @@ class GroupController extends Controller
      */
     public function create()
     {
-        return view("groups.create");
+        return view("groups.form");
     }
 
     /**
@@ -91,7 +91,7 @@ class GroupController extends Controller
      */
     public function edit(Group $group)
     {
-        //
+        return view("groups.form", compact("group"));
     }
 
     /**
@@ -99,7 +99,18 @@ class GroupController extends Controller
      */
     public function update(UpdateGroupRequest $request, Group $group)
     {
-        //
+        $validated = $request->validate([
+            "name" => "required|max:255",
+            "description" => "max:1023",
+        ]);
+
+        $group->update([
+            "name" => $request->name,
+            "description" => $request->description,
+        ]);
+        Session::flash('message', 'Group updated successfully!');
+        Session::flash("alert-type", "success");
+        return redirect(route('groups.show', $group));
     }
 
     /**

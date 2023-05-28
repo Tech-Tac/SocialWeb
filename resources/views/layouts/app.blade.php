@@ -27,57 +27,66 @@
 			}, 30 * 60 * 1000);
 		</script>
 	@endauth
-    <script defer>
-        function toast(text, type, options) {
-            const toasts = document.getElementById("toasts");
+	<script defer>
+		function toast(text, type, options) {
+			const toasts = document.getElementById("toasts");
 
-            const toast = document.createElement("div");
-            toast.classList.add("toast");
-            if(type){
-                toast.classList.add("text-bg-" + type );
-            }
-            toast.setAttribute("role", "alert");
+			const toast = document.createElement("div");
+			toast.classList.add("toast");
+			if (type) {
+				toast.classList.add("text-bg-" + type);
+			}
+			toast.setAttribute("role", "alert");
 
-            const flex = document.createElement("div");
-            flex.classList.add('d-flex');
+			const flex = document.createElement("div");
+			flex.classList.add('d-flex');
 
-            const body = document.createElement("div");
-            body.classList.add("toast-body");
-            body.appendChild(document.createTextNode(text));
+			const body = document.createElement("div");
+			body.classList.add("toast-body");
+			body.appendChild(document.createTextNode(text));
 
-            const close = document.createElement("button");
-            close.classList.add("btn-close");
-            close.classList.add("m-auto");
-            close.classList.add("me-2");
-            close.setAttribute("data-bs-dismiss", "toast");
-            close.setAttribute("aria-label", "close");
+			const close = document.createElement("button");
+			close.classList.add("btn-close");
+			close.classList.add("m-auto");
+			close.classList.add("me-2");
+			close.setAttribute("data-bs-dismiss", "toast");
+			close.setAttribute("aria-label", "close");
 
-            flex.appendChild(body);
-            flex.appendChild(close);
-            toast.appendChild(flex);
-            toasts.appendChild(toast);
+			flex.appendChild(body);
+			flex.appendChild(close);
+			toast.appendChild(flex);
+			toasts.appendChild(toast);
 
-            const bsToast = new bootstrap.Toast(toast, options);
-            bsToast.show();
-        }
-    </script>
+			const bsToast = new bootstrap.Toast(toast, options);
+			bsToast.show();
+		}
+	</script>
 	@stack('scripts')
 </head>
 
 <body>
 	<div id="app">
-        @include('partials.navbar')
+		@include('partials.navbar')
 
 		<main class="py-4">
-			@yield('content')
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-lg-10">
+						@yield('content')
+					</div>
+				</div>
+			</div>
 		</main>
 		<div class="toast-container position-fixed bottom-0 start-0 p-3" id="toasts">
 			@if (Session::has('message'))
-                <script defer>
-                    window.addEventListener("load", function() {
-                        toast("{{ Session::get('message') }}" @if (Session::has('alert-type')), "{{Session::get('alert-type')}}" @endif);
-                    });
-			    </script>
+				<script defer>
+					window.addEventListener("load", function() {
+						toast("{{ Session::get('message') }}"
+							@if (Session::has('alert-type'))
+								, "{{ Session::get('alert-type') }}"
+							@endif );
+					});
+				</script>
 			@endif
 			@stack('toasts')
 		</div>

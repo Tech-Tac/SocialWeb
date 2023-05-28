@@ -1,9 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-lg-10">
+
 				<div class="card">
 					<div class="card-body">
 						@if ($errors->any())
@@ -11,17 +9,20 @@
 								Something went wrong, please try again.
 							</div>
 						@endif
-						<form action="{{ route('groups.store') }}" method="POST">
+						<form action="{{ $group ? route('groups.update', $group) : route('groups.store') }}" method="POST">
 							@csrf
+                            @if ($group)
+                            @method("PUT")
+                            @endif
 							<fieldset>
 								<legend>Group Info</legend>
 								<div class="mb-3">
 									<label for="name" class="form-label"><i class="bi bi-bookmark-fill"></i> Name</label>
-									<input type="text" class="form-control" name="name" maxlength="255" required id="name">
+									<input type="text" class="form-control" name="name" maxlength="255" required value="{{$group->name??''}}">
 								</div>
 								<div class="mb-3">
 									<label for="description" class="form-label"><i class="bi bi-text-paragraph"></i> Description</label>
-									<textarea name="description" id="description" class="form-control" maxlength="1043"></textarea>
+									<textarea name="description" id="description" class="form-control" maxlength="1043">{{$group->description??''}}</textarea>
 								</div>
 							</fieldset>
 							<div class="text-center">
@@ -33,7 +34,5 @@
 						</form>
 					</div>
 				</div>
-			</div>
-		</div>
-	</div>
+
 @endsection

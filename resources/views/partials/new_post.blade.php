@@ -5,10 +5,10 @@
 	@endif
 	<div class="card">
 		<div class="card-header"><b>{{ Auth::user()->name }}</b>:
-			<input type="text" class="form-control" required name="title" maxlength="255" placeholder="Tile"></span>
+			<input type="text" class="form-control" required name="title" maxlength="255" placeholder="Post Tile">
 		</div>
 		<div class="card-body">
-			<textarea name="content" maxlength="2047" required class="form-control" placeholder="Content..."></textarea>
+			<textarea name="content" maxlength="2047" required class="form-control" placeholder="Post content"></textarea>
 		</div>
 		<div class="card-footer">
 			<button type="submit" class="btn btn-success">
