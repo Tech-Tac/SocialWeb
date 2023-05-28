@@ -5,7 +5,7 @@
 	<a class="fw-bold text-black" href="{{ route('users.show', $comment->user) }}">{{ $comment->user->name }}</a>
 	<p>{{ $comment->content }}</p>
 	@auth
-		@foreach ($comment->comments as $reply)
+		@foreach ($comment->replies as $reply)
 			@include('partials.comment', ['comment' => $reply])
 		@endforeach
 		<div class="row">

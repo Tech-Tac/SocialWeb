@@ -39,7 +39,7 @@ class Comment extends Model
         return $this->belongsTo(Comment::class);
     }
 
-    public function comments(): HasMany
+    public function replies(): HasMany
     {
         return $this->hasMany(Comment::class);
     }
