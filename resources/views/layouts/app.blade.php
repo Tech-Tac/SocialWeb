@@ -36,6 +36,7 @@
             if(type){
                 toast.classList.add("text-bg-" + type );
             }
+            close.setAttribute("role", "alert");
 
             const flex = document.createElement("div");
             flex.classList.add('d-flex');
@@ -48,7 +49,8 @@
             close.classList.add("btn-close");
             close.classList.add("m-auto");
             close.classList.add("me-2");
-            close.setAttribute("data-bs-dismiss","toast");
+            close.setAttribute("data-bs-dismiss", "toast");
+            close.setAttribute("aria-label", "close");
 
             flex.appendChild(body);
             flex.appendChild(close);
@@ -155,20 +157,13 @@
 		</main>
 		<div class="toast-container position-fixed bottom-0 start-0 p-3" id="toasts">
 			@if (Session::has('message'))
-				{{-- <div class="toast text-bg-{{ Session::get('alert-type', 'primary') }}" id="message_toast" role="alert" aria-live="assertive" aria-atomic="true">
-					<div class="d-flex">
-						<div class="toast-body">
-							{{ Session::get('message') }}
-						</div>
-						<button type="button" class="btn-close m-auto me-2" data-bs-dismiss="toast" aria-label="Close"></button>
-					</div>
-				</div> --}}
-				<script defer>
+                @push('scripts')
+                <script defer>
 					window.addEventListener("load", function() {
 						toast("{{ Session::get('message') }}" @if (Session::has('alert-type')), "{{Session::get('alert-type')}}" @endif);
 					});
-
 				</script>
+                @endpush
 			@endif
 			@stack('toasts')
 		</div>
