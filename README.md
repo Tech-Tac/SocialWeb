@@ -2,7 +2,7 @@
 
 v1.0
 
-A social network application with features like user accounts, friend system, posts, comments, likes, groups, and more!
+A social network application with features like user accounts, friendship system, posts, comments, likes, groups, and more!
 
 Made with ❤ by @Tech-Tac.
 
@@ -22,7 +22,7 @@ Made with ❤ by @Tech-Tac.
 
 ### Installation steps
 
-After succesfully installing the required versions of PHP, MySQL, Composer and Node follow these steps:
+After successfully installing the required versions of PHP, MySQL, Composer and Node follow these steps:
 
 1. Create database `SocialWeb` with encoding `utf8mb4_unicode_ci`
 2. Run `composer install`

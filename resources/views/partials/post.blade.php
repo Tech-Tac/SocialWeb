@@ -1,6 +1,9 @@
 @pushOnce('scripts')
 	@include('partials.sendLike_script')
 @endPushOnce
+@pushOnce('scripts')
+	@include('partials.comment_script')
+@endPushOnce
 <div class="post card p-2 my-3 shadow-sm" id="post_{{ $post->id }}">
 	<div class="card">
 		<div class="card-header">
@@ -45,11 +48,13 @@
 			</a>
 		</div>
 	</div>
-	@foreach ($post->comments as $comment)
-		@include('partials.comment', ['comment', $comment])
-	@endforeach
+	<div class="comments" id="post_{{ $post->id }}_comments">
+		@foreach ($post->comments as $comment)
+			@include('partials.comment', ['comment', $comment])
+		@endforeach
+	</div>
 	@auth
-		<form action="{{ route('comments.store') }}" method="POST">
+		<form action="{{ route('comments.store') }}" method="POST" onsubmit="event.preventDefault();comment(this,document.getElementById('post_{{ $post->id }}_comments'))">
 			@csrf
 			<input type="hidden" name="post_id" value="{{ $post->id }}">
 			<div class="input-group mt-2">

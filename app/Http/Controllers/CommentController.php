@@ -29,9 +29,10 @@ class CommentController extends Controller
             'comment_id' => $request->comment_id,
             'content' => $request->content,
         ]);
-        Session::flash("message", "Comment sent succesfully!");
+        /* Session::flash("message", "Comment sent succesfully!");
         Session::flash("alert-type", "success");
-        return redirect()->back()->withFragment('#post_' . $comment->post->id);;
+        return redirect()->back()->withFragment('#post_' . $comment->post->id); */
+        return view("partials.comment", compact("comment"));
     }
 
     /**
@@ -69,7 +70,13 @@ class CommentController extends Controller
      */
     public function update(UpdateCommentRequest $request, Comment $comment)
     {
-        //
+        $validated = $request->validate([
+            'content' => 'required|max:2047',
+        ]);
+
+        $comment->update([
+            'content' => $request->content,
+        ]);
     }
 
     /**
