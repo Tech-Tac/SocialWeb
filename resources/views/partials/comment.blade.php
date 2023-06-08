@@ -5,8 +5,29 @@
 	@include('partials.comment_script')
 @endPushOnce
 <div class="card card-body my-2" id="comment_{{ $comment->id }}">
-	<a class="fw-bold text-black" href="{{ route('users.show', $comment->user) }}">{{ $comment->user->name }}</a>
+	<div class="header">
+		<a class="fw-bold text-black" href="{{ route('users.show', $comment->user) }}">{{ $comment->user->name }}</a>
+		@if (Auth::check() && $comment->user->id === Auth::user()->id)
+			<div class="dropdown float-end">
+				<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+				<ul class="dropdown-menu">
+					<li><a class="dropdown-item" href="{{ route('comments.edit', $comment) }}">Edit</a></li>
+					<li>
+						<form action="{{ route('comments.destroy', $comment) }}" method="post">
+							@csrf
+							@method('DELETE')
+							<button type="submit" class="dropdown-item">Delete</button>
+						</form>
+					</li>
+				</ul>
+			</div>
+		@endif
+		<span class="text-muted float-end mx-3">{{ $comment->created_at->diffForHumans() }}</span>
+	</div>
 	<p>{{ $comment->content }}</p>
+	@if ($comment->created_at != $comment->updated_at)
+		<span class="text-muted">edited</span>
+	@endif
 	@auth
 		<div class="comments" id="comment_{{ $comment->id }}_replies">
 			@foreach ($comment->replies as $reply)

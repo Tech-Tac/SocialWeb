@@ -13,9 +13,7 @@
 			<a class="fw-bold text-black" href="{{ route('users.show', $post->user) }}">{{ $post->user->name }}</a>:
 			@if ($post->user->id === Auth::user()->id)
 				<div class="dropdown float-end">
-					<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-						Actions
-					</button>
+					<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
 					<ul class="dropdown-menu">
 						<li><a class="dropdown-item" href="{{ route('posts.edit', $post) }}">Edit</a></li>
 						<li>
@@ -28,8 +26,12 @@
 					</ul>
 				</div>
 			@endif
-			<h5 class="card-title">{{ $post->title }}</h5>
-			<span class="text-muted float-end">{{ $post->created_at }}</span>
+			<span class="text-muted float-end mx-3">{{ $post->created_at->diffForHumans() }}</span>
+			<br>
+			<h5 class="card-title d-inline">{{ $post->title }}</h5>
+			@if ($post->created_at != $post->updated_at)
+				<span class="text-muted">edited</span>
+			@endif
 		</div>
 		<div class="card-body">
 			<p>{{ $post->content }}</p>
