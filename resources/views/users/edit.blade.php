@@ -87,7 +87,7 @@
 								@csrf
 								<button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">
 									<i class="bi bi-x-lg"></i>
-									Nevermind</button>
+									Never mind</button>
 								<button type="submit" class="btn btn-danger">
 									<i class="bi bi-trash-fill"></i>
 									Delete Anyway</button>

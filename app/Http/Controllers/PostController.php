@@ -59,13 +59,13 @@ class PostController extends Controller
                 'content' => $request->content,
             ]);
 
-            Session::flash("message", "Post created succesfully!");
+            Session::flash("message", "Post created successfully!");
             Session::flash("alert-type", "success");
 
             return redirect(route('posts.show', $post));
         }
 
-        Session::flash("message", "An error occuerd.");
+        Session::flash("message", "An error occurred.");
         Session::flash("alert-type", "danger");
 
         return redirect()->back();

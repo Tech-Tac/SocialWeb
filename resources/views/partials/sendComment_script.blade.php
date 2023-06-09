@@ -4,7 +4,7 @@
 
 		const rollback = function() {
 			container.innerHTML = oldHTML;
-			toast("An error occured.", "danger");
+			toast("An error occurred.", "danger");
 		};
 
 		const request = fetch(`${location.protocol}//${location.host}/comments`, {
