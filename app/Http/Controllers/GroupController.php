@@ -43,7 +43,7 @@ class GroupController extends Controller
             "description" => $request->description,
         ]);
 
-        Session::flash("message", "Group created succesfully!");
+        Session::flash("message", "Group created successfully!");
         Session::flash("alert-type", "success");
         return redirect(route('groups.index'));
     }
@@ -63,11 +63,12 @@ class GroupController extends Controller
     {
         if (Membership::where(["group_id" => $group->id, "user_id" => Auth::user()->id])->count() === 0) {
             Membership::create(["group_id" => $group->id, "user_id" => Auth::user()->id]);
-            Session::flash("message", "Joined group succesfully!");
+            Session::flash("message", "Joined group successfully!");
             Session::flash("alert-type", "success");
+        } else {
+            Session::flash("message", "Already joined.");
+            Session::flash("alert-type", "info");
         }
-        Session::flash("message", "Alreday joined.");
-        Session::flash("alert-type", "info");
         return redirect()->back();
     }
     /**
@@ -78,11 +79,12 @@ class GroupController extends Controller
         $membership = Membership::where(["group_id" => $group->id, "user_id" => Auth::user()->id])->first();
         if ($membership) {
             $membership->delete();
-            Session::flash("message", "Left group succesfully!");
+            Session::flash("message", "Left group successfully!");
             Session::flash("alert-type", "success");
+        } else {
+            Session::flash("message", "You are not a member of this group");
+            Session::flash("alert-type", "info");
         }
-        Session::flash("message", "You are not a member of this group");
-        Session::flash("alert-type", "info");
         return redirect()->back();
     }
 

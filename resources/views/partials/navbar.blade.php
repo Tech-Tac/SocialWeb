@@ -26,16 +26,19 @@
 			</ul>
 
 			<form class="d-flex" role="search" action="{{ route('search') }}">
-				<input class="form-control me-2" name="q" type="search" required placeholder="Search" aria-label="Search" value="{{ request()->get('q') }}">
-				<button class="btn btn-outline-success" type="submit">
-					Search
-				</button>
+				<div class="input-group">
+					<input class="form-control" name="q" type="search" required placeholder="Search" aria-label="Search" value="{{ request()->get('q') }}">
+					<button class="btn btn-outline-success" type="submit">
+						<i class="bi bi-search"></i>
+						Search
+					</button>
+				</div>
 			</form>
 
 			<!-- Right Side Of Navbar -->
 			<ul class="navbar-nav ms-auto">
 
-				<li class="nav-item mx-2">
+				<li class="nav-item mx-2" title="Toggle theme">
 					<button class="nav-link px-3" id="theme_toggle" onclick="toggleTheme()">
 						<i class="bi bi-sun-fill"></i>
 					</button>

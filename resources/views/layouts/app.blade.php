@@ -85,8 +85,11 @@
 <body>
 	<div id="app">
 		@include('partials.navbar')
-
+		<button class="btn btn-lg btn-secondary rounded-circle m-4 position-fixed z-3 shadow-sm" onclick="history.back()">
+			<i class="bi bi-arrow-left"></i>
+		</button>
 		<main class="py-4">
+
 			<div class="container">
 				<div class="row justify-content-center">
 					<div class="col-lg-10">

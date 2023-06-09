@@ -2,26 +2,27 @@
 
 @section('content')
 	<h3>Users
-		<small class="float-end text-muted">{{ $users->count() }}</small>
+		<small class="float-end text-secondary">{{ $users->count() }}</small>
 	</h3>
 	@if ($users->count() === 0)
-		<div class="text-center text-muted">No users found.</div>
+		<div class="text-center text-secondary">No users found.</div>
 	@endif
 	@foreach ($users as $user)
 		@include('partials.user_card', ['user' => $user])
 	@endforeach
 
 	<h3>Groups
-		<small class="float-end text-muted">{{ $groups->count() }}</small>
+		<small class="float-end text-secondary">{{ $groups->count() }}</small>
 	</h3>
 	@if ($groups->count() === 0)
-		<div class="text-center text-muted">No users found.</div>
+		<div class="text-center text-secondary">No users found.</div>
 	@endif
 	@foreach ($groups as $group)
 		<div class="card my-3">
 			<div class="row g-0">
 				<div class="col-auto">
-					<a href="{{ route('groups.show', $group) }}" class="text-decoration-none text-reset"><img src="https://placehold.co/512" class="img-thumbnail" style="height:12em;width:12em;" alt="group Avatar"></a>
+					<a href="{{ route('groups.show', $group) }}" class="text-decoration-none text-reset"><img src="https://placehold.co/512" class="img-thumbnail"
+							style="height:12em;width:12em;" alt="group Avatar"></a>
 				</div>
 				<div class="col">
 					<div class="card-body">
@@ -57,10 +58,10 @@
 
 	<h3>
 		Posts
-		<small class="float-end text-muted">{{ $posts->count() }}</small>
+		<small class="float-end text-secondary">{{ $posts->count() }}</small>
 	</h3>
 	@if ($posts->count() === 0)
-		<div class="text-center text-muted">No posts found.</div>
+		<div class="text-center text-secondary">No posts found.</div>
 	@endif
 	@foreach ($posts as $post)
 		@include('partials.post', ['post' => $post])

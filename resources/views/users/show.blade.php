@@ -12,7 +12,7 @@
 				Online
 			</small>
 		@else
-			<small class="text-muted">
+			<small class="text-secondary">
 				<i class="bi bi-x-circle"></i>
 				@if ($user->last_seen)
 					Last seen at {{ $user->last_seen }}

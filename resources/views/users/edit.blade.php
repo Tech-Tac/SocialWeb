@@ -8,7 +8,7 @@
 					Something went wrong, please try again.
 				</div>
 			@endif
-			<form action="{{ route('users.update') }}" method="POST">
+			<form action="{{ route('users.update') }}" method="POST" enctype="multipart/form-data">
 				@csrf
 				@method('PUT')
 				<fieldset>
@@ -25,7 +25,12 @@
 						<label for="about" class="form-label"><i class="bi bi-text-paragraph"></i> About</label>
 						<textarea name="about" rows="3" id="about" class="form-control" maxlength="511">{{ Auth::user()->about }}</textarea>
 					</div>
+					<div class="mb-3">
+						<label for="avatar" class="form-label"><i class="bi bi-person-circle"></i> Avatar</label>
+						<input type="file" class="form-control" id="avatar" accept="image/*">
+					</div>
 				</fieldset>
+				<hr>
 				<fieldset>
 					<legend>Change Password</legend>
 					<div class="mb-3">
@@ -33,11 +38,11 @@
 						<input type="password" class="form-control" name="old_password" id="old_password">
 					</div>
 					<div class="mb-3">
-						<label for="password" class="form-label"><i class="bi bi-lock-fill"></i> New password</label>
+						<label for="password" class="form-label"><i class="bi bi-lock"></i> New password</label>
 						<input type="password" class="form-control" name="password" id="password">
 					</div>
 					<div class="mb-3">
-						<label for="password_confirmation" class="form-label"><i class="bi bi-lock"></i> Confirm password</label>
+						<label for="password_confirmation" class="form-label"><i class="bi bi-lock-fill"></i> Confirm password</label>
 						<input type="password" class="form-control" name="password_confirmation" id="password_confirmation">
 					</div>
 				</fieldset>

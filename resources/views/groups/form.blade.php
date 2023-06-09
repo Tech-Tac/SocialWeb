@@ -8,9 +8,9 @@
 					Something went wrong, please try again.
 				</div>
 			@endif
-			<form action="{{ $group ? route('groups.update', $group) : route('groups.store') }}" method="POST">
+			<form action="{{ isset($group) ? route('groups.update', $group) : route('groups.store') }}" method="POST">
 				@csrf
-				@if ($group)
+				@if (isset($group))
 					@method('PUT')
 				@endif
 				<fieldset>

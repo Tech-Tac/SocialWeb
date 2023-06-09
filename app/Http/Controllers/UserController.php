@@ -111,8 +111,8 @@ class UserController extends Controller
 
         $request->validate([
             "old_password" => "nullable|max:255|current_password",
-            "password" => "nullable|max:255|confirmed",
-            "password_confirmation" => "nullable|max:255",
+            "password" => "required_with:old_password|max:255|confirmed",
+            "password_confirmation" => "required_with:password|max:255",
         ]);
 
         if ($request->password) {
@@ -120,7 +120,7 @@ class UserController extends Controller
                 "password" => Hash::make($request->password),
             ]);
         }
-        Session::flash("message", "Account updated succesfully!");
+        Session::flash("message", "Account updated successfully!");
         Session::flash("alert-type", "success");
 
         return redirect()->back();
@@ -139,7 +139,7 @@ class UserController extends Controller
         } */
         User::whereId(Auth::user()->id)->delete();
         Auth::logout();
-        Session::flash("message", "Account deleted succesfully!");
+        Session::flash("message", "Account deleted successfully!");
         Session::flash("alert-type", "success");
         return redirect(route("home"));
     }

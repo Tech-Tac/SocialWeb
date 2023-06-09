@@ -7,9 +7,9 @@
 <div class="post card my-4 shadow" id="post_{{ $post->id }}">
 	<div class="card-header">
 		@if ($post->group)
-			<a class="fw-bold text-body" href="{{ route('groups.show', $post->group) }}">{{ $post->group->name }}</a> >
+			<a class="fw-bold text-body-emphasis" href="{{ route('groups.show', $post->group) }}">{{ $post->group->name }}</a> >
 		@endif
-		<a class="fw-bold text-body" href="{{ route('users.show', $post->user) }}">{{ $post->user->name }}</a>:
+		<a class="fw-bold text-body-emphasis" href="{{ route('users.show', $post->user) }}">{{ $post->user->name }}</a>:
 		@if ($post->user->id === Auth::user()->id)
 			<div class="dropdown float-end">
 				<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
@@ -25,11 +25,11 @@
 				</ul>
 			</div>
 		@endif
-		<span class="text-muted float-end mx-3">{{ $post->created_at->diffForHumans() }}</span>
+		<span class="text-secondary float-end mx-3">{{ $post->created_at->diffForHumans() }}</span>
 		<br>
 		<h5 class="card-title d-inline">{{ $post->title }}</h5>
 		@if ($post->created_at != $post->updated_at)
-			<span class="text-muted">edited</span>
+			<span class="text-secondary">edited</span>
 		@endif
 	</div>
 	<div class="card-body">

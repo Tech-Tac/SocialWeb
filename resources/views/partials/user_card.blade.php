@@ -1,7 +1,8 @@
 <div class="card my-3">
 	<div class="row g-0">
 		<div class="col-auto">
-			<a href="{{ route('users.show', $user) }}" class="text-decoration-none text-reset"><img src="https://placehold.co/512" class="img-thumbnail" style="height:12em;width:12em;" alt="User Avatar"></a>
+			<a href="{{ route('users.show', $user) }}" class="text-decoration-none text-reset"><img src="https://placehold.co/512" class="img-thumbnail"
+					style="height:12em;width:12em;" alt="User Avatar"></a>
 		</div>
 		<div class="col">
 			<div class="card-body">
@@ -16,7 +17,7 @@
 							Online
 						</small>
 					@else
-						<small class="text-muted">
+						<small class="text-secondary">
 							<i class="bi bi-x-circle"></i>
 							@if ($user->last_seen)
 								Last seen at {{ $user->last_seen }}

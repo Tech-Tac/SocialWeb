@@ -4,9 +4,9 @@
 @pushOnce('scripts')
 	@include('partials.sendComment_script')
 @endPushOnce
-<div class="card card-body my-3" id="comment_{{ $comment->id }}">
+<div class="card card-body shadow-sm my-3" id="comment_{{ $comment->id }}">
 	<div class="header">
-		<a class="fw-bold text-body" href="{{ route('users.show', $comment->user) }}">{{ $comment->user->name }}</a>
+		<a class="fw-bold text-body-emphasis" href="{{ route('users.show', $comment->user) }}">{{ $comment->user->name }}</a>
 		@if (Auth::check() && $comment->user->id === Auth::user()->id)
 			<div class="dropdown float-end">
 				<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
@@ -22,11 +22,11 @@
 				</ul>
 			</div>
 		@endif
-		<span class="text-muted float-end mx-3">{{ $comment->created_at->diffForHumans() }}</span>
+		<span class="text-secondary float-end mx-3">{{ $comment->created_at->diffForHumans() }}</span>
 	</div>
 	<p>{{ $comment->content }}</p>
 	@if ($comment->created_at != $comment->updated_at)
-		<span class="text-muted">edited</span>
+		<span class="text-secondary">edited</span>
 	@endif
 	@auth
 		<div class="comments" id="comment_{{ $comment->id }}_replies">
