@@ -1,6 +1,6 @@
 <script defer>
-	function comment(form, container) {
-		const oldHTML = container.innerHTML;
+	function sendComment(form, container) {
+		let oldHTML = container.innerHTML;
 
 		const rollback = function() {
 			container.innerHTML = oldHTML;
@@ -17,6 +17,7 @@
 			body: new FormData(form),
 		}).then((response) => {
 			response.text().then((value) => {
+				oldHTML = container.innerHTML;
 				if (value) {
 					container.innerHTML += value;
 					form.reset();

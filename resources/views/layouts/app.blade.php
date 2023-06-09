@@ -60,6 +60,24 @@
 			const bsToast = new bootstrap.Toast(toast, options);
 			bsToast.show();
 		}
+
+		function toggleTheme() {
+			const themeIcon = document.querySelector("#theme_toggle .bi");
+
+			if (localStorage.getItem("theme") === "light") {
+				localStorage.setItem("theme", "dark");
+			} else {
+				localStorage.setItem("theme", "light");
+			}
+
+			themeIcon.className = "bi bi-" + (localStorage.getItem("theme") === "dark" ? "sun" : "moon") + "-fill";
+			document.documentElement.setAttribute("data-bs-theme", localStorage.getItem("theme"));
+		}
+
+		document.documentElement.setAttribute("data-bs-theme", localStorage.getItem("theme"));
+		window.addEventListener("load", function() {
+			document.querySelector("#theme_toggle .bi").className = "bi bi-" + (localStorage.getItem("theme") === "dark" ? "sun" : "moon") + "-fill";
+		});
 	</script>
 	@stack('scripts')
 </head>

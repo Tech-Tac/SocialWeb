@@ -1,14 +1,16 @@
 <script defer>
 	function sendLike(model, id, button) {
-		const oldNum = parseInt(button.getElementsByClassName('like-count')[0].textContent);
+		let oldNum = parseInt(button.getElementsByClassName('like-count')[0].textContent);
+		button.disabled = true;
 		button.getElementsByClassName('like-count')[0].textContent = button.classList.contains("btn-success") ? oldNum - 1 : oldNum + 1;
 		button.classList.toggle("btn-outline-success");
 		button.classList.toggle("btn-success");
 		const rollback = function() {
+			button.disabled = false;
 			button.getElementsByClassName('like-count')[0].textContent = oldNum;
 			button.classList.toggle("btn-outline-success");
 			button.classList.toggle("btn-success");
-            toast("An error occured.","danger");
+			toast("An error occured.", "danger");
 		};
 		const request = fetch(`${location.protocol}//${location.host}/${model}/${id}/like`, {
 			method: "POST",
@@ -19,9 +21,11 @@
 			},
 		}).then((response) => {
 			response.text().then((value) => {
+				oldNum = parseInt(button.getElementsByClassName('like-count')[0].textContent);
 				if (isNaN(parseInt(value))) {
 					rollback();
 				} else {
+					button.disabled = false;
 					button.getElementsByClassName('like-count')[0].textContent = parseInt(value);
 				}
 			});

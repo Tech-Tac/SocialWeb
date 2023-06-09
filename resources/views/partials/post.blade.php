@@ -2,70 +2,50 @@
 	@include('partials.sendLike_script')
 @endPushOnce
 @pushOnce('scripts')
-	@include('partials.comment_script')
+	@include('partials.sendComment_script')
 @endPushOnce
-<div class="post card p-2 my-3 shadow-sm" id="post_{{ $post->id }}">
-	<div class="card">
-		<div class="card-header">
-			@if ($post->group)
-				<a class="fw-bold text-black" href="{{ route('groups.show', $post->group) }}">{{ $post->group->name }}</a> >
-			@endif
-			<a class="fw-bold text-black" href="{{ route('users.show', $post->user) }}">{{ $post->user->name }}</a>:
-			@if ($post->user->id === Auth::user()->id)
-				<div class="dropdown float-end">
-					<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
-					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" href="{{ route('posts.edit', $post) }}">Edit</a></li>
-						<li>
-							<form action="{{ route('posts.destroy', $post) }}" method="post">
-								@csrf
-								@method('DELETE')
-								<button type="submit" class="dropdown-item">Delete</button>
-							</form>
-						</li>
-					</ul>
-				</div>
-			@endif
-			<span class="text-muted float-end mx-3">{{ $post->created_at->diffForHumans() }}</span>
-			<br>
-			<h5 class="card-title d-inline">{{ $post->title }}</h5>
-			@if ($post->created_at != $post->updated_at)
-				<span class="text-muted">edited</span>
-			@endif
-		</div>
-		<div class="card-body">
-			<p>{{ $post->content }}</p>
-		</div>
-		<div class="card-footer">
-			@auth
-				<button class="btn {{ in_array(Auth::user()->id, $post->likes->pluck('user_id')->toArray()) ? 'btn-success' : 'btn-outline-success' }} btn-like" type="button"
-					onclick="sendLike('posts',{{ $post->id }}, this)">
-					<i class="bi bi-heart-fill"></i>
-					<span class="like-count">{{ $post->likes->count() }}</span> Like
-				</button>
-			@endauth
-			<a class="btn btn-primary" href="{{ route('posts.show', $post) }}">
-				<i class="bi bi-share-fill"></i>
-				Share
-			</a>
-		</div>
-	</div>
-	<div class="comments" id="post_{{ $post->id }}_comments">
-		@foreach ($post->comments as $comment)
-			@include('partials.comment', ['comment', $comment])
-		@endforeach
-	</div>
-	@auth
-		<form action="{{ route('comments.store') }}" method="POST" onsubmit="event.preventDefault();comment(this,document.getElementById('post_{{ $post->id }}_comments'))">
-			@csrf
-			<input type="hidden" name="post_id" value="{{ $post->id }}">
-			<div class="input-group mt-2">
-				<textarea name="content" rows="1" class="form-control" required maxlength="2047" placeholder="Leave a comment"></textarea>
-				<button class="btn btn-primary" type="submit">
-					<i class="bi bi-send-fill"></i>
-					Send
-				</button>
+<div class="post card my-4 shadow" id="post_{{ $post->id }}">
+	<div class="card-header">
+		@if ($post->group)
+			<a class="fw-bold text-body" href="{{ route('groups.show', $post->group) }}">{{ $post->group->name }}</a> >
+		@endif
+		<a class="fw-bold text-body" href="{{ route('users.show', $post->user) }}">{{ $post->user->name }}</a>:
+		@if ($post->user->id === Auth::user()->id)
+			<div class="dropdown float-end">
+				<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+				<ul class="dropdown-menu">
+					<li><a class="dropdown-item" href="{{ route('posts.edit', $post) }}">Edit</a></li>
+					<li>
+						<form action="{{ route('posts.destroy', $post) }}" method="post">
+							@csrf
+							@method('DELETE')
+							<button type="submit" class="dropdown-item">Delete</button>
+						</form>
+					</li>
+				</ul>
 			</div>
-		</form>
-	@endauth
+		@endif
+		<span class="text-muted float-end mx-3">{{ $post->created_at->diffForHumans() }}</span>
+		<br>
+		<h5 class="card-title d-inline">{{ $post->title }}</h5>
+		@if ($post->created_at != $post->updated_at)
+			<span class="text-muted">edited</span>
+		@endif
+	</div>
+	<div class="card-body">
+		<p>{{ $post->content }}</p>
+	</div>
+	<div class="card-footer">
+		@auth
+			<button class="btn {{ in_array(Auth::user()->id, $post->likes->pluck('user_id')->toArray()) ? 'btn-success' : 'btn-outline-success' }} btn-like"
+				type="button" onclick="sendLike('posts',{{ $post->id }}, this)">
+				<i class="bi bi-heart-fill"></i>
+				<span class="like-count">{{ $post->likes->count() }}</span> Like
+			</button>
+		@endauth
+		<a class="btn btn-primary" href="{{ route('posts.show', $post) }}">
+			<i class="bi bi-card-heading"></i>
+			Show
+		</a>
+	</div>
 </div>
