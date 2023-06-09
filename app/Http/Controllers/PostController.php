@@ -84,7 +84,11 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view("posts.edit", compact('post'));
+        if (Auth::user()->id === $post->user->id) {
+            return view("posts.edit", compact('post'));
+        } else {
+            return redirect()->back();
+        }
     }
 
     /**
@@ -92,20 +96,24 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-        $validated = $request->validate([
-            'title' => 'required|max:255',
-            'content' => 'required|max:2047',
-        ]);
+        if (Auth::user()->id === $post->user->id) {
+            $validated = $request->validate([
+                'title' => 'required|max:255',
+                'content' => 'required|max:2047',
+            ]);
 
-        $post->update([
-            'title' => $request->title,
-            'content' => $request->content,
-        ]);
+            $post->update([
+                'title' => $request->title,
+                'content' => $request->content,
+            ]);
 
-        Session::flash("message", "Post updated succesfully!");
-        Session::flash("alert-type", "success");
+            Session::flash("message", "Post updated successfully!");
+            Session::flash("alert-type", "success");
 
-        return redirect(route('posts.show', $post));
+            return redirect(route('posts.show', $post));
+        } else {
+            return redirect()->back();
+        }
     }
 
     /**
@@ -113,10 +121,14 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        $post->delete();
-        Session::flash("message", "Post deleted succesfully!");
-        Session::flash("alert-type", "success");
+        if (Auth::user()->id === $post->user->id) {
+            $post->delete();
+            Session::flash("message", "Post deleted successfully!");
+            Session::flash("alert-type", "success");
 
-        return redirect()->back();
+            return redirect()->back();
+        } else {
+            return redirect()->back();
+        }
     }
 }

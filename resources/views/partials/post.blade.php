@@ -44,8 +44,8 @@
 			</button>
 		@endauth
 		<a class="btn btn-primary" href="{{ route('posts.show', $post) }}">
-			<i class="bi bi-card-heading"></i>
-			Show
+			<i class="bi bi-chat-square-fill"></i>
+			View
 		</a>
 	</div>
 </div>
