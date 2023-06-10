@@ -35,6 +35,8 @@ After successfully installing the required versions of PHP, MySQL, Composer and 
 8. Run the project by executing `npm run build` and `php artisan serve`
 9. Congratulations! The project is up and running!
 
+_teeny tiny little note:_ the friendship system is currently broken (I'm losing my sanity), if you can fix it, create a pull request!
+
 ---
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
