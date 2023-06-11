@@ -43,7 +43,7 @@
 				<span class="like-count">{{ $post->likes->count() }}</span> Like
 			</button>
 		@endauth
-		@if (!isset($no_view) || (isset($no_view) && $no_view == false))
+		@if (!isset($full) || $full !== true)
 			<button class="btn btn-primary" onclick="viewPost({{ $post->id }})">
 				<i class="bi bi-chat-square-fill"></i>
 				View
@@ -52,7 +52,7 @@
 	</div>
 </div>
 
-@if (!isset($no_view) || (isset($no_view) && $no_view == false))
+@if (!isset($full) || $full !== true)
 	@pushOnce('scripts')
 		@include('partials.viewPost_script')
 	@endPushOnce
@@ -65,7 +65,7 @@
 						<h1 class="modal-title fs-5">Post</h1>
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
-					<div class="modal-body pb-0" id="view_body">
+					<div class="modal-body py-0" id="view_body">
 					</div>
 				</div>
 			</div>

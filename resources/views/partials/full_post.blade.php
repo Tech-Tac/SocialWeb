@@ -1,4 +1,4 @@
-@include('partials.post', ['post' => $post, 'no_view' => true])
+@include('partials.post', ['post' => $post, 'full' => true])
 
 <div class="comments" id="post_{{ $post->id }}_comments">
 	<h4>Comments</h4>
