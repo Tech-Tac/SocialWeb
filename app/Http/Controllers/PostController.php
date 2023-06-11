@@ -16,7 +16,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        return redirect("home");
     }
 
     /**
@@ -38,7 +38,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view("partials.new_post");
     }
 
     /**
@@ -77,6 +77,14 @@ class PostController extends Controller
     public function show(Post $post)
     {
         return view('posts.show', compact('post'));
+    }
+
+    /**
+     * View the specified post.
+     */
+    public function view(Post $post)
+    {
+        return view('partials.full_post', compact('post'));
     }
 
     /**

@@ -24,6 +24,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 Route::resource('posts', App\Http\Controllers\PostController::class)->only(["index", "show"]);
 Route::resource('posts', App\Http\Controllers\PostController::class)->except(["index", "show"])->middleware("auth");
+Route::get('posts/{post}/view', [App\Http\Controllers\PostController::class, "view"])->name('posts.view');
 Route::post('posts/{post}/like', [App\Http\Controllers\PostController::class, "like"])->name('posts.like')->middleware("auth");
 
 Route::resource('comments', App\Http\Controllers\CommentController::class)->except(["index", "create"])->middleware("auth");

@@ -1,9 +1,9 @@
-@include('partials.post', ['post' => $post])
+@include('partials.post', ['post' => $post, 'no_view' => true])
 
 <div class="comments" id="post_{{ $post->id }}_comments">
 	<h4>Comments</h4>
 	@foreach ($post->comments as $comment)
-		@include('partials.comment', ['comment', $comment])
+		@include('partials.comment', ['comment' => $comment])
 	@endforeach
 </div>
 @auth

@@ -48,7 +48,8 @@
 				<input type="hidden" name="post_id" value="{{ $comment->post->id }}">
 				<input type="hidden" name="comment_id" value="{{ $comment->id }}">
 				<div class="input-group">
-					<textarea name="content" rows="1" class="form-control" required maxlength="2047" placeholder="Reply to {{ $comment->user->name }}"></textarea>
+					{{-- <textarea name="content" rows="1" class="form-control" required maxlength="2047" placeholder="Reply to {{ $comment->user->name }}"></textarea> --}}
+					<input type="text" name="content" class="form-control" required maxlength="2047" placeholder="Reply to {{ $comment->user->name }}">
 					<button class="btn btn-sm btn-primary" type="submit">
 						<i class="bi bi-reply-fill"></i>
 						Reply

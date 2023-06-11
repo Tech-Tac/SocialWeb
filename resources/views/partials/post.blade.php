@@ -43,9 +43,32 @@
 				<span class="like-count">{{ $post->likes->count() }}</span> Like
 			</button>
 		@endauth
-		<a class="btn btn-primary" href="{{ route('posts.show', $post) }}">
-			<i class="bi bi-chat-square-fill"></i>
-			View
-		</a>
+		@if (!isset($no_view) || (isset($no_view) && $no_view == false))
+			<button class="btn btn-primary" onclick="viewPost({{ $post->id }})">
+				<i class="bi bi-chat-square-fill"></i>
+				View
+			</button>
+		@endif
 	</div>
 </div>
+
+@if (!isset($no_view) || (isset($no_view) && $no_view == false))
+	@pushOnce('scripts')
+		@include('partials.viewPost_script')
+	@endPushOnce
+
+	@pushOnce('content')
+		<div class="modal fade" id="post_view" tabindex="-1" aria-hidden="true">
+			<div class="modal-dialog modal-xl modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5">Post</h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body" id="view_body">
+					</div>
+				</div>
+			</div>
+		</div>
+	@endPushOnce
+@endif
