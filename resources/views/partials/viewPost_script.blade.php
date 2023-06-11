@@ -13,7 +13,7 @@
 		const request = fetch(`${location.protocol}//${location.host}/posts/${postId}/view`).then((response) => {
 			response.text().then((value) => {
 				if (value) {
-					body.innerHTML += value;
+					body.innerHTML = value;
 					bsModal.show();
 				} else {
 					rollback();

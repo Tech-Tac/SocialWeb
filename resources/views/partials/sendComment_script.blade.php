@@ -22,6 +22,9 @@
 					container.innerHTML += value;
 					form.reset();
 					toast("Commented successfully!", "success");
+					if (container.getElementsByClassName("empty-comments")[0]) {
+						container.getElementsByClassName("empty-comments")[0].remove();
+					}
 				} else {
 					rollback();
 				}
