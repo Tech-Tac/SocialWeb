@@ -16,7 +16,8 @@ Made with ❤ by @Tech-Tac.
   - MySQL 10.4.20-MariaDB or newer
 - Composer v2.3.10 or newer
 - Node v18 or newer
-- Laravel v10.10
+
+This project is made with Laravel v10.10
 
 **Note: You can install the latest version of MySQL, Composer or Node**, but refer to said versions if problems are found.
 
@@ -25,13 +26,18 @@ Made with ❤ by @Tech-Tac.
 After successfully installing the required versions of PHP, MySQL, Composer and Node follow these steps:
 
 1. Create database `SocialWeb` with encoding `utf8mb4_unicode_ci`
-2. Run `composer install`
-3. Run `npm install`
-4. Run `php artisan migrate`
-5. Configure `.env` file.
-6. Make sure the project is installed properly.
-7. Run the project by executing `npm run build` and `php artisan serve`
-8. Congratulations! The project is up and running!
+2. Go to the installation folder.
+3. Run `composer install`
+4. Run `npm install`
+5. Run `php artisan migrate`
+6. Configure `.env` file.
+7. Make sure the project is installed properly.
+8. Run the project by executing `npm run build` and `php artisan serve`
+9. Congratulations! The project is up and running!
+
+Tip: you can run `php artisan db:seed` to generate a bunch of fake users and posts to play with.
+
+_teeny tiny little note:_ the friendship system is currently broken (I'm losing my sanity), if you can fix it, create a pull request!
 
 ---
 
