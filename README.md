@@ -35,6 +35,8 @@ After successfully installing the required versions of PHP, MySQL, Composer and 
 8. Run the project by executing `npm run build` and `php artisan serve`
 9. Congratulations! The project is up and running!
 
+Tip: you can run `php artisan db:seed` to generate a bunch of fake users and posts to play with.
+
 _teeny tiny little note:_ the friendship system is currently broken (I'm losing my sanity), if you can fix it, create a pull request!
 
 ---
