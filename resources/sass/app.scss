@@ -19,8 +19,11 @@
     background-color: #8883;
     padding: 0.6em;
     border-radius: var(--bs-border-radius);
-    color: var(--bs-code-color);
     overflow-y: visible;
+}
+
+.post-content pre code {
+    color: var(--bs-code-color);
 }
 
 .post-content table {

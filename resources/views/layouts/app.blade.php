@@ -78,6 +78,12 @@
 		window.addEventListener("load", function() {
 			document.querySelector("#theme_toggle .bi").className = "bi bi-" + (localStorage.getItem("theme") === "dark" ? "sun" : "moon") + "-fill";
 		});
+
+
+		window.addEventListener("load", () => {
+			const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+			const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+		});
 	</script>
 	@stack('scripts')
 </head>
