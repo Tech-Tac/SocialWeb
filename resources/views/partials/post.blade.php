@@ -10,26 +10,35 @@
 			<a class="fw-bold text-body-emphasis" href="{{ route('groups.show', $post->group) }}">{{ $post->group->name }}</a> >
 		@endif
 		<a class="fw-bold text-body-emphasis" href="{{ route('users.show', $post->user) }}">{{ $post->user->name }}</a>:
-		@if ($post->user->id === Auth::user()->id)
-			<div class="dropdown float-end">
-				<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
-				<ul class="dropdown-menu">
-					<li><a class="dropdown-item" href="{{ route('posts.edit', $post) }}">Edit</a></li>
+
+		<div class="dropdown float-end">
+			<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+			<ul class="dropdown-menu">
+				<li><a class="dropdown-item" href="{{ route('posts.show', $post) }}"><i class="bi bi-eye-fill"></i> Show</a></li>
+				@auth
+					<li><a class="dropdown-item" href><i class="bi bi-flag-fill"></i> Report</a></li>
+				@endauth
+				@if ($post->user->id === Auth::user()->id)
+					<li>
+						<hr class="dropdown-divider">
+					</li>
+					<li><a class="dropdown-item" href="{{ route('posts.edit', $post) }}"><i class="bi bi-pencil-square"></i> Edit</a></li>
 					<li>
 						<form action="{{ route('posts.destroy', $post) }}" method="post">
 							@csrf
 							@method('DELETE')
-							<button type="submit" class="dropdown-item">Delete</button>
+							<button type="submit" class="dropdown-item"><i class="bi bi-trash-fill"></i> Delete</button>
 						</form>
 					</li>
-				</ul>
-			</div>
-		@endif
+				@endif
+			</ul>
+		</div>
+
 		<span class="text-secondary float-end mx-3">{{ $post->created_at->diffForHumans() }}</span>
 		<br>
 		<h5 class="card-title d-inline">{{ $post->title }}</h5>
 		@if ($post->created_at != $post->updated_at)
-			<span class="text-secondary">edited</span>
+			<span class="text-secondary">edited {{ $post->updated_at->diffForHumans() }}</span>
 		@endif
 	</div>
 	<div class="card-body">

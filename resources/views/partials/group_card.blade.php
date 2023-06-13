@@ -11,7 +11,7 @@
 				</a>
 				<p class="card-text text-truncate">{{ $group->description }}</p>
 				<p>{{ $group->members->count() }} members, {{ $group->posts->count() }} posts</p>
-				@if (Auth::check())
+				@auth
 					@if (in_array(Auth::user()->id, $group->memberships->pluck('user_id')->toArray()))
 						<form action="{{ route('groups.leave', $group) }}" class="text-end" method="post">
 							@csrf
@@ -29,7 +29,7 @@
 							</button>
 						</form>
 					@endif
-				@endif
+				@endauth
 			</div>
 		</div>
 	</div>

@@ -6,7 +6,12 @@
 @endPushOnce
 <div class="card card-body shadow-sm my-3" id="comment_{{ $comment->id }}">
 	<div class="header">
-		<a class="fw-bold text-body-emphasis" href="{{ route('users.show', $comment->user) }}">{{ $comment->user->name }}</a>
+		<a class="fw-bold text-body-emphasis" href="{{ route('users.show', $comment->user) }}">
+			{{ $comment->user->name }}
+			@if ($comment->user->id === $comment->post->user->id)
+				<span class="badge text-bg-secondary" title="Original Poster">OP</span>
+			@endif
+		</a>
 		@if (Auth::check() && $comment->user->id === Auth::user()->id)
 			<div class="dropdown float-end">
 				<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
@@ -26,7 +31,7 @@
 	</div>
 	<p>{{ $comment->content }}</p>
 	@if ($comment->created_at != $comment->updated_at)
-		<span class="text-secondary">edited</span>
+		<span class="text-secondary">edited {{ $comment->updated_at->diffForHumans() }}</span>
 	@endif
 	@auth
 		<div class="comments" id="comment_{{ $comment->id }}_replies">
