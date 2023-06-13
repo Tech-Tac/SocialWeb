@@ -12,26 +12,40 @@
 				<span class="badge text-bg-secondary" title="Original Poster">OP</span>
 			@endif
 		</a>
-		@if (Auth::check() && $comment->user->id === Auth::user()->id)
-			<div class="dropdown float-end">
-				<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
-				<ul class="dropdown-menu">
-					<li><a class="dropdown-item" href="{{ route('comments.edit', $comment) }}">Edit</a></li>
+		<div class="dropdown float-end">
+			<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+			<ul class="dropdown-menu">
+				<li>
+					<a class="dropdown-item" href="{{ route('posts.show', $comment->post) . ('#comment_' . $comment->id) }}">
+						<i class="bi bi-eye-fill"></i>
+						Show
+					</a>
+				</li>
+				@auth
+					<li><a class="dropdown-item" href><i class="bi bi-flag-fill"></i> Report</a></li>
+				@endauth
+				@if ($comment->user->id === Auth::user()->id)
+					<li>
+						<hr class="dropdown-divider">
+					</li>
+					<li><a class="dropdown-item" href="{{ route('comments.edit', $comment) }}"><i class="bi bi-pencil-square"></i> Edit</a></li>
 					<li>
 						<form action="{{ route('comments.destroy', $comment) }}" method="post">
 							@csrf
 							@method('DELETE')
-							<button type="submit" class="dropdown-item">Delete</button>
+							<button type="submit" class="dropdown-item"><i class="bi bi-trash-fill"></i> Delete</button>
 						</form>
 					</li>
-				</ul>
-			</div>
-		@endif
-		<span class="text-secondary float-end mx-3">{{ $comment->created_at->diffForHumans() }}</span>
+				@endif
+			</ul>
+		</div>
+		<time class="text-secondary float-end mx-3" datetime="{{ $comment->created_at }}"
+			title="{{ $comment->created_at }}">{{ $comment->created_at->diffForHumans() }}</time>
 	</div>
 	<p>{{ $comment->content }}</p>
 	@if ($comment->created_at != $comment->updated_at)
-		<span class="text-secondary">edited {{ $comment->updated_at->diffForHumans() }}</span>
+		<time class="text-secondary" datetime="{{ $comment->updated_at }}" title="{{ $comment->updated_at }}">edited
+			{{ $comment->updated_at->diffForHumans() }}</time>
 	@endif
 	@auth
 		<div class="comments" id="comment_{{ $comment->id }}_replies">

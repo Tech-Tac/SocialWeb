@@ -22,6 +22,7 @@ class UserFactory extends Factory
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'about' => fake()->realText(127),
+            'avatar' => Str::afterLast(fake()->image(public_path('images'), 512, 512), '\\'),
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
             'remember_token' => Str::random(10),

@@ -27,7 +27,7 @@
 					</div>
 					<div class="mb-3">
 						<label for="avatar" class="form-label"><i class="bi bi-person-circle"></i> Avatar</label>
-						<input type="file" class="form-control" id="avatar" accept="image/*">
+						<input type="file" class="form-control" name="avatar" id="avatar" accept="image/*">
 					</div>
 				</fieldset>
 				<hr>

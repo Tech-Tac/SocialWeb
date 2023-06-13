@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-light text-bg-info bg-gradient shadow-sm sticky-top" data-bs-theme="light">
 	<div class="container">
 		<a class="navbar-brand" href="{{ url('/') }}">
+			<img src="{{ asset('logo.svg') }}" alt="Logo" height="32">
 			{{ config('app.name', 'Laravel') }}
 		</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

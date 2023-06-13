@@ -34,11 +34,12 @@
 			</ul>
 		</div>
 
-		<span class="text-secondary float-end mx-3">{{ $post->created_at->diffForHumans() }}</span>
+		<time class="text-secondary float-end mx-3" datetime="{{ $post->created_at }}"
+			title="{{ $post->created_at }}">{{ $post->created_at->diffForHumans() }}</time>
 		<br>
 		<h5 class="card-title d-inline">{{ $post->title }}</h5>
 		@if ($post->created_at != $post->updated_at)
-			<span class="text-secondary">edited {{ $post->updated_at->diffForHumans() }}</span>
+			<time class="text-secondary" datetime="{{ $post->updated_at }}" title="{{ $post->updated_at }}">edited {{ $post->updated_at->diffForHumans() }}</time>
 		@endif
 	</div>
 	<div class="card-body">

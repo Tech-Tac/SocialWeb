@@ -102,6 +102,10 @@ class UserController extends Controller
             "name" => "required|max:255",
             "email" => "required|max:255|unique:users,email," . Auth::user()->id,
             "about" => "nullable|max:1023",
+            "avatar" => "nullable|image",
+            "old_password" => "nullable|max:255|current_password",
+            "password" => "required_with:old_password|max:255|confirmed",
+            "password_confirmation" => "required_with:password|max:255",
         ]);
 
         User::whereId(Auth::user()->id)->update([
@@ -109,17 +113,21 @@ class UserController extends Controller
             "about" => $request->about,
         ]);
 
-        $request->validate([
-            "old_password" => "nullable|max:255|current_password",
-            "password" => "required_with:old_password|max:255|confirmed",
-            "password_confirmation" => "required_with:password|max:255",
-        ]);
-
         if ($request->password) {
             User::whereId(Auth::user()->id)->update([
                 "password" => Hash::make($request->password),
             ]);
         }
+
+        if ($request->avatar) {
+            $image_name = time() . '.' . $request->avatar->extension();
+            $request->avatar->move(public_path('images'), $image_name);
+
+            User::whereId(Auth::user()->id)->update([
+                "avatar" => $image_name,
+            ]);
+        }
+
         Session::flash("message", "Account updated successfully!");
         Session::flash("alert-type", "success");
 
@@ -131,16 +139,10 @@ class UserController extends Controller
      */
     public function destroy()
     {
-        /* if (Auth::user()->comments) {
-            Comment::where("user_id", Auth::user()->id)->delete();
-        }
-        if (Auth::user()->posts) {
-            Post::where("user_id", Auth::user()->id)->delete();
-        } */
         User::whereId(Auth::user()->id)->delete();
         Auth::logout();
-        Session::flash("message", "Account deleted successfully!");
-        Session::flash("alert-type", "success");
+        Session::flash("message", "Account deleted successfully, sad to see you go.");
+        Session::flash("alert-type", "info");
         return redirect(route("home"));
     }
 }

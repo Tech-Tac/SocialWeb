@@ -2,7 +2,8 @@
 	<div class="row g-0">
 		<div class="col-auto">
 			<a href="{{ route('users.show', $user) }}" class="text-decoration-none text-reset">
-				<img src="https://placehold.co/512" class="img-thumbnail" style="height:12em;width:12em;" alt="User Avatar">
+				<img src="{{ $user->avatar ? asset('images/' . $user->avatar) : 'https://placehold.co/512' }}" class="img-thumbnail" style="height:12em;width:12em;"
+					alt="User Avatar">
 			</a>
 		</div>
 		<div class="col">
