@@ -19,6 +19,7 @@ class Group extends Model
     protected $fillable = [
         'name',
         'description',
+        'icon',
     ];
 
     protected function members(): Attribute

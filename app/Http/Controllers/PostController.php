@@ -38,7 +38,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view("partials.new_post");
+        return view("partials.post_form");
     }
 
     /**

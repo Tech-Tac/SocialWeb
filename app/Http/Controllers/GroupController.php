@@ -36,11 +36,20 @@ class GroupController extends Controller
         $validated = $request->validate([
             "name" => "required|max:255",
             "description" => "max:1023",
+            "icon" => "nullable|image",
         ]);
+
+        $image_name = null;
+
+        if ($request->avatar) {
+            $image_name = time() . '.' . $request->icon->extension();
+            $request->icon->move(public_path('images'), $image_name);
+        }
 
         Group::create([
             "name" => $request->name,
             "description" => $request->description,
+            "icon" => $image_name,
         ]);
 
         Session::flash("message", "Group created successfully!");
@@ -104,12 +113,23 @@ class GroupController extends Controller
         $validated = $request->validate([
             "name" => "required|max:255",
             "description" => "max:1023",
+            "icon" => "nullable|image",
         ]);
 
         $group->update([
             "name" => $request->name,
             "description" => $request->description,
         ]);
+
+        if ($request->avatar) {
+            $image_name = time() . '.' . $request->icon->extension();
+            $request->icon->move(public_path('images'), $image_name);
+
+            $group->update([
+                "icon" => $image_name,
+            ]);
+        }
+
         Session::flash('message', 'Group updated successfully!');
         Session::flash("alert-type", "success");
         return redirect(route('groups.show', $group));

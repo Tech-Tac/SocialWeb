@@ -30,7 +30,7 @@
 			</form>
 		@endif
 	</div>
-	@includeWhen(Auth::check() && in_array(Auth::user()->id, $group->memberships->pluck('user_id')->toArray()), 'partials.new_post')
+	@includeWhen(Auth::check() && in_array(Auth::user()->id, $group->memberships->pluck('user_id')->toArray()), 'partials.post_form')
 	<hr>
 	@foreach ($group->posts->sortByDesc('created_at') as $post)
 		@include('partials.post', ['post', $post])

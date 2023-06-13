@@ -2,7 +2,7 @@
 
 @section('content')
 	<div class="fs-4">New Post</div>
-	@include('partials.new_post')
+	@include('partials.post_form')
 	<hr>
 	<div>
 		<span class="fs-4">Home Feed</span>

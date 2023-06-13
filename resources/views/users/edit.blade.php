@@ -27,14 +27,21 @@
 					</div>
 					<div class="mb-3">
 						<label for="avatar" class="form-label"><i class="bi bi-person-circle"></i> Avatar</label>
-						<input type="file" class="form-control" name="avatar" id="avatar" accept="image/*">
+						<div class="row">
+							<div class="col-auto">
+								<img src="{{ asset('images/' . Auth::user()->avatar) }}" id="image" class="img-thumbnail" style="width:10em;height:10em;">
+							</div>
+							<div class="col">
+								<input type="file" class="form-control" name="avatar" id="avatar" accept="image/*">
+							</div>
+						</div>
 					</div>
 				</fieldset>
 				<hr>
 				<fieldset>
 					<legend>Change Password</legend>
 					<div class="mb-3">
-						<label for="old_password" class="form-label"><i class="bi bi-unlock-fill"></i> Old password</label>
+						<label for="old_password" class="form-label"><i class="bi bi-unlock"></i> Old password</label>
 						<input type="password" class="form-control" name="old_password" id="old_password">
 					</div>
 					<div class="mb-3">
@@ -104,3 +111,19 @@
 		</div>
 	</div>
 @endsection
+@push('scripts')
+	<script>
+		window.addEventListener("load", () => {
+			const preview = document.getElementById("image");
+			const input = document.getElementById("avatar");
+
+			input.addEventListener("input", () => {
+				const file = input.files[0];
+
+				if (file) {
+					preview.src = URL.createObjectURL(file);
+				}
+			});
+		});
+	</script>
+@endpush
