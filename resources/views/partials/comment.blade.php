@@ -13,7 +13,7 @@
 			@endif
 		</a>
 		<div class="dropdown float-end">
-			<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+			<button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
 			<ul class="dropdown-menu">
 				<li>
 					<a class="dropdown-item" href="{{ route('posts.show', $comment->post) . ('#comment_' . $comment->id) }}">
