@@ -14,3 +14,26 @@
     background-color: #f4f8ff;
 }
  */
+
+.post-content pre {
+    background-color: #8883;
+    padding: 0.6em;
+    border-radius: var(--bs-border-radius);
+    color: var(--bs-code-color);
+    overflow-y: visible;
+}
+
+.post-content table {
+    width: 100%;
+    margin-bottom: 1rem;
+    vertical-align: top;
+}
+
+.post-content blockquote {
+    border-left: 4px solid var(--bs-border-color);
+    padding: 1em;
+}
+
+.post-content blockquote p {
+    margin: 0;
+}

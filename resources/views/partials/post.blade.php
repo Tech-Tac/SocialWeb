@@ -33,7 +33,11 @@
 		@endif
 	</div>
 	<div class="card-body">
-		<p>{{ $post->content }}</p>
+		<div class="post-content" {{-- @if (!isset($full) || $full !== true) style=" display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;overflow: hidden;" @endif --}}>
+			@php
+				echo Str::markdown($post->content, ['html_input' => 'escape']);
+			@endphp
+		</div>
 	</div>
 	<div class="card-footer">
 		@auth

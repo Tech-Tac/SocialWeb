@@ -1,15 +1,16 @@
 <div class="card my-3">
 	<div class="row g-0">
 		<div class="col-auto">
-			<a href="{{ route('users.show', $user) }}" class="text-decoration-none text-reset"><img src="https://placehold.co/512" class="img-thumbnail"
-					style="height:12em;width:12em;" alt="User Avatar"></a>
+			<a href="{{ route('users.show', $user) }}" class="text-decoration-none text-reset">
+				<img src="https://placehold.co/512" class="img-thumbnail" style="height:12em;width:12em;" alt="User Avatar">
+			</a>
 		</div>
 		<div class="col">
 			<div class="card-body">
 				<a href="{{ route('users.show', $user) }}" class="text-decoration-none text-reset">
 					<h5 class="card-title">{{ $user->name }}</h5>
 				</a>
-				<p class="card-text">{{ $user->about }}</p>
+				<p class="card-text text-truncate">{{ $user->about }}</p>
 				<span class="card-text">
 					@if ($user->online)
 						<small class="text-success">

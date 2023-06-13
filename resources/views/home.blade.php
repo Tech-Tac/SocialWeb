@@ -9,7 +9,10 @@
 		<span class="text-secondary float-end">{{ count($posts) }} shown posts</span>
 		<br>
 	</div>
-	@foreach ($posts as $post)
-		@include('partials.post', ['post', $post])
-	@endforeach
+	<div id="posts">
+		@foreach ($posts as $post)
+			@include('partials.post', ['post', $post])
+		@endforeach
+	</div>
+	<div class="text-center text-secondary">You have reached the end.</div>
 @endsection
