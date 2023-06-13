@@ -1,8 +1,10 @@
 <div class="card my-3">
 	<div class="row g-0">
 		<div class="col-auto">
-			<a href="{{ route('groups.show', $group) }}" class="text-decoration-none text-reset"><img src="https://placehold.co/512" class="img-thumbnail"
-					style="height:12em;width:12em;" alt="group Avatar"></a>
+			<a href="{{ route('groups.show', $group) }}" class="text-decoration-none text-reset">
+				<img src="{{ $group->icon ? asset('images/' . $group->icon) : 'https://placehold.co/512' }}" class="img-thumbnail" style="height:12em;width:12em;"
+					alt="Group Icon">
+			</a>
 		</div>
 		<div class="col">
 			<div class="card-body">

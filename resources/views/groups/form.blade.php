@@ -27,7 +27,7 @@
 						<label for="icon" class="form-label"><i class="bi bi-image"></i> Icon</label>
 						<div class="row">
 							<div class="col-auto">
-								<img src="{{ asset('images/' . $group->icon) }}" id="image" class="img-thumbnail" style="width:10em;height:10em;">
+								<img src="{{ isset($group) ? asset('images/' . $group->icon) : '' }}" id="image" class="img-thumbnail" style="width:10em;height:10em;">
 							</div>
 							<div class="col">
 								<input type="file" class="form-control" name="icon" id="icon" accept="image/*">

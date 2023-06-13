@@ -2,7 +2,7 @@
 
 @section('content')
 	<div class="text-center">
-		<img src="https://placehold.co/512" class="img-thumbnail" style="height:12em;width:12em;" alt="Group Icon">
+		<img src="{{ $group->icon ? asset('images/' . $group->icon) : 'https://placehold.co/512' }}" class="img-thumbnail" style="height:12em;width:12em;"alt="Group Icon">
 		<br><br>
 		<h4>{{ $group->name }}</h4>
 		<p>{{ $group->description }}</p>

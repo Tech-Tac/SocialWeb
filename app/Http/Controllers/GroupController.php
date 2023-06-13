@@ -41,7 +41,7 @@ class GroupController extends Controller
 
         $image_name = null;
 
-        if ($request->avatar) {
+        if ($request->icon) {
             $image_name = time() . '.' . $request->icon->extension();
             $request->icon->move(public_path('images'), $image_name);
         }
@@ -121,7 +121,7 @@ class GroupController extends Controller
             "description" => $request->description,
         ]);
 
-        if ($request->avatar) {
+        if ($request->icon) {
             $image_name = time() . '.' . $request->icon->extension();
             $request->icon->move(public_path('images'), $image_name);
 
