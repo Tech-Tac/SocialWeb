@@ -1,4 +1,4 @@
-<script defer>
+<script>
 	function sendLike(model, id, button) {
 		let oldNum = parseInt(button.getElementsByClassName('like-count')[0].textContent);
 		button.disabled = true;

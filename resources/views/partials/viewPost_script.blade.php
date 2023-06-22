@@ -1,4 +1,4 @@
-<script defer>
+<script>
 	function viewPost(postId) {
 		const modal = document.getElementById("post_view");
 		const bsModal = new bootstrap.Modal(modal);

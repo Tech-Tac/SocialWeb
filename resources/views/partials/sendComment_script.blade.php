@@ -1,4 +1,4 @@
-<script defer>
+<script>
 	function sendComment(form, container) {
 		if (form.disabled !== true) {
 			let oldHTML = container.innerHTML;

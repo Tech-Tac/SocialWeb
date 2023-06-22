@@ -32,12 +32,11 @@ After successfully installing the required versions of PHP, MySQL, Composer and 
 5. Run `php artisan migrate`
 6. Configure `.env` file.
 7. Make sure the project is installed properly.
-8. Run the project by executing `npm run build` and `php artisan serve`
-9. Congratulations! The project is up and running!
+8. Run `npm run build`
+9. Start the project by running `php artisan serve`. To use anywhere on your local network, run `php artisan serve --host=YOUR_IP_HERE` instead.
+10. Congratulations! The project is up and running! Visit it by going to http://YOUR_IP_HERE:8000
 
 Tip: you can run `php artisan db:seed` to generate a bunch of fake users and posts to play with.
-
-_teeny tiny little note:_ the friendship system is currently broken (I'm losing my sanity), if you can fix it, create a pull request!
 
 ---
 

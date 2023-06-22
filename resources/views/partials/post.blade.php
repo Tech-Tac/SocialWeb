@@ -39,7 +39,9 @@
 		<br>
 		<h5 class="card-title d-inline">{{ $post->title }}</h5>
 		@if ($post->created_at != $post->updated_at)
-			<time class="text-secondary" datetime="{{ $post->updated_at }}" title="{{ $post->updated_at }}">edited {{ $post->updated_at->diffForHumans() }}</time>
+			<span class="text-secondary fs-6">
+				edited <time datetime="{{ $post->updated_at }}" title="{{ $post->updated_at }}">{{ $post->updated_at->diffForHumans() }}</time>
+			</span>
 		@endif
 	</div>
 	<div class="card-body">
