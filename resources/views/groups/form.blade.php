@@ -27,10 +27,13 @@
 						<label for="icon" class="form-label"><i class="bi bi-image"></i> Icon</label>
 						<div class="row">
 							<div class="col-auto">
-								<img src="{{ isset($group) ? asset('images/' . $group->icon) : '' }}" id="image" class="img-thumbnail" style="width:10em;height:10em;">
+								<img src="{{ isset($group) ? asset('images/' . ($group->icon ?? 'group.svg')) : asset('images/group.svg') }}" id="image" class="img-thumbnail"
+									style="width:10em;height:10em;">
 							</div>
 							<div class="col">
-								<input type="file" class="form-control" name="icon" id="icon" accept="image/*">
+								<input type="file" class="form-control" name="icon" id="icon" accept="image/*"><br>
+								<input type="hidden" id="clear_icon" name="clear_icon" value="0">
+								<button class="btn btn-danger" id="clear_btn" type="button"><i class="bi bi-x-lg"></i>Remove</button>
 							</div>
 						</div>
 					</div>
@@ -50,14 +53,25 @@
 		window.addEventListener("load", () => {
 			const preview = document.getElementById("image");
 			const input = document.getElementById("icon");
+			const clearImage = document.getElementById('clear_icon');
 
 			input.addEventListener("input", () => {
 				const file = input.files[0];
 
 				if (file) {
 					preview.src = URL.createObjectURL(file);
+					clearImage.value = 0;
 				}
 			});
+
+			document.getElementById("clear_btn").addEventListener("click", clear);
+
+			function clear() {
+				clearImage.value = 1;
+				input.value = null;
+				input.files = null;
+				preview.src = "{{ asset('images/group.svg') }}";
+			}
 		});
 	</script>
 @endpush

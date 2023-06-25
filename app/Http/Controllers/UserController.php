@@ -119,19 +119,23 @@ class UserController extends Controller
             ]);
         }
 
-        if ($request->avatar) {
+        if ($request->avatar && $request->clear_avatar == 0) {
             $image_name = time() . '.' . $request->avatar->extension();
             $request->avatar->move(public_path('images'), $image_name);
 
             User::whereId(Auth::user()->id)->update([
                 "avatar" => $image_name,
             ]);
+        } elseif ($request->clear_avatar == 1) {
+            User::whereId(Auth::user()->id)->update([
+                "avatar" => null,
+            ]);
         }
 
         Session::flash("message", "Account updated successfully!");
         Session::flash("alert-type", "success");
 
-        return redirect()->back();
+        return redirect(route("users.show", Auth::user()));
     }
 
     /**

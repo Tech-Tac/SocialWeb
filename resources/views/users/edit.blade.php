@@ -29,10 +29,12 @@
 						<label for="avatar" class="form-label"><i class="bi bi-person-circle"></i> Avatar</label>
 						<div class="row">
 							<div class="col-auto">
-								<img src="{{ asset('images/' . Auth::user()->avatar) }}" id="image" class="img-thumbnail" style="width:10em;height:10em;">
+								<img src="{{ asset('images/' . (Auth::user()->avatar ?? 'person.svg')) }}" id="image" class="img-thumbnail" style="width:10em;height:10em;">
 							</div>
 							<div class="col">
-								<input type="file" class="form-control" name="avatar" id="avatar" accept="image/*">
+								<input type="file" class="form-control" name="avatar" id="avatar" accept="image/*"><br>
+								<input type="hidden" id="clear_avatar" name="clear_avatar" value="0">
+								<button class="btn btn-danger" id="clear_btn" type="button"><i class="bi bi-x-lg"></i>Remove</button>
 							</div>
 						</div>
 					</div>
@@ -116,14 +118,25 @@
 		window.addEventListener("load", () => {
 			const preview = document.getElementById("image");
 			const input = document.getElementById("avatar");
+			const clearImage = document.getElementById('clear_avatar');
 
 			input.addEventListener("input", () => {
 				const file = input.files[0];
 
 				if (file) {
 					preview.src = URL.createObjectURL(file);
+					clearImage.value = 0;
 				}
 			});
+
+			document.getElementById("clear_btn").addEventListener("click", clear);
+
+			function clear() {
+				clearImage.value = 1;
+				input.value = null;
+				input.files = null;
+				preview.src = "{{ asset('images/person.svg') }}";
+			}
 		});
 	</script>
 @endpush

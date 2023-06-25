@@ -46,11 +46,13 @@ class GroupController extends Controller
             $request->icon->move(public_path('images'), $image_name);
         }
 
-        Group::create([
+        $group = Group::create([
             "name" => $request->name,
             "description" => $request->description,
             "icon" => $image_name,
         ]);
+
+        $this->join($group);
 
         Session::flash("message", "Group created successfully!");
         Session::flash("alert-type", "success");
@@ -121,12 +123,16 @@ class GroupController extends Controller
             "description" => $request->description,
         ]);
 
-        if ($request->icon) {
+        if ($request->icon && $request->clear_icon == 0) {
             $image_name = time() . '.' . $request->icon->extension();
             $request->icon->move(public_path('images'), $image_name);
 
             $group->update([
                 "icon" => $image_name,
+            ]);
+        } elseif ($request->clear_icon == 1) {
+            $group->update([
+                "icon" => null,
             ]);
         }
 

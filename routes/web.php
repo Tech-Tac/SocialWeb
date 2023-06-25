@@ -37,8 +37,8 @@ Route::resource('users', App\Http\Controllers\UserController::class)->only(["ind
 
 Route::post('users/{user}/add_friend', [App\Http\Controllers\UserController::class, "addFriend"])->name('users.add_friend')->middleware("auth");
 
-Route::resource('groups', App\Http\Controllers\GroupController::class)->only(["index", "show"]);
 Route::resource('groups', App\Http\Controllers\GroupController::class)->except(["index", "show"])->middleware("auth");
+Route::resource('groups', App\Http\Controllers\GroupController::class)->only(["index", "show"]);
 Route::post('groups/{group}/join', [App\Http\Controllers\GroupController::class, "join"])->name('groups.join')->middleware("auth");
 Route::post('groups/{group}/leave', [App\Http\Controllers\GroupController::class, "leave"])->name('groups.leave')->middleware("auth");
 

@@ -5,7 +5,15 @@
     <rect fill="#7c7c7c" height="256" width="256" x="0" y="0" />
   </g>
   <g inkscape:groupmode="layer" inkscape:label="Person">
-    <rect id="Body" fill="#e7e7e7" height="192" rx="64" ry="64" width="192" x="32" y="128" />
-    <ellipse id="Head" cx="128" cy="64" fill="#e7e7e7" rx="48" ry="48" />
+    <rect id="Body" fill="#aaaaaa" height="160" rx="48" ry="48" width="160" x="84" y="156" />
+    <ellipse id="Head" cx="164" cy="100" fill="#aaaaaa" rx="40" ry="40" />
+  </g>
+  <g inkscape:groupmode="layer" inkscape:label="Person">
+    <rect fill="#cbcbcb" height="160" rx="48" ry="48" width="160" x="12" y="150" />
+    <ellipse cx="92" cy="94" fill="#cbcbcb" rx="40" ry="40" />
+  </g>
+  <g inkscape:groupmode="layer" inkscape:label="Person">
+    <rect fill="#e7e7e7" height="160" rx="48" ry="48" width="160" x="48" y="144" />
+    <ellipse cx="128" cy="88" fill="#e7e7e7" rx="40" ry="40" />
   </g>
 </svg>

@@ -3,8 +3,7 @@
 @section('content')
 
 	<div class="text-center">
-		<img src="{{ $user->avatar ? asset('images/' . $user->avatar) : 'https://placehold.co/512' }}" class="img-thumbnail" style="height:12em;width:12em;"
-			alt="User Avatar">
+		<img src="{{ asset('images/' . ($user->avatar ?? 'person.svg')) }}" class="img-thumbnail" style="height:12em;width:12em;" alt="User Avatar">
 		<br><br>
 		<h1>{{ $user->name }}</h1>
 		@if ($user->online)

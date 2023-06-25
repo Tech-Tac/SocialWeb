@@ -9,7 +9,7 @@
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 
 	<title>{{ config('app.name', 'Laravel') }}</title>
-	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<link rel="icon" href="logo.svg" type="image/x-icon">
 
 	<!-- Fonts -->
 	<link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -96,7 +96,6 @@
 			<i class="bi bi-arrow-left"></i>
 		</button> --}}
 		<main class="py-4">
-
 			<div class="container">
 				<div class="row justify-content-center">
 					<div class="col-lg-10">
