@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:realworld="http://www.rw-designer.com/export-svg" width="256px" height="256px">
+  <g inkscape:groupmode="layer" inkscape:label="Background">
+    <rect fill="#7c7c7c" height="256" width="256" x="0" y="0" />
+  </g>
+  <g inkscape:groupmode="layer" inkscape:label="Person">
+    <rect fill="#e7e7e7" height="192" rx="64" ry="64" width="192" x="32" y="128" />
+    <ellipse cx="128" cy="64" fill="#e7e7e7" rx="48" ry="48" />
+  </g>
+</svg>

@@ -7,7 +7,7 @@
 		<h4>{{ $group->name }}</h4>
 		<p>{{ $group->description }}</p>
 		<p>{{ $group->members->count() }} members, {{ $group->posts->count() }} posts</p>
-		@if (in_array(Auth::user()->id, $group->memberships->pluck('user_id')->toArray()))
+		@if (Auth::check() && in_array(Auth::user()->id, $group->memberships->pluck('user_id')->toArray()))
 			<form action="{{ route('groups.leave', $group) }}" method="post">
 				@csrf
 				<button class="btn btn-primary" type="submit">
@@ -20,7 +20,7 @@
 				<i class="bi bi-pencil-square"></i>
 				Edit
 			</a>
-		@else
+		@elseif(Auth::check())
 			<form action="{{ route('groups.join', $group) }}" method="post">
 				@csrf
 				<button class="btn btn-primary" type="submit">

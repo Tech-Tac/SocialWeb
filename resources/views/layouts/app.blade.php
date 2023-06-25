@@ -9,7 +9,7 @@
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 
 	<title>{{ config('app.name', 'Laravel') }}</title>
-	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
 
 	<!-- Fonts -->
 	<link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -65,10 +65,10 @@
 		function toggleTheme() {
 			const themeIcon = document.querySelector("#theme_toggle .bi");
 
-			if (localStorage.getItem("theme") === "light") {
-				localStorage.setItem("theme", "dark");
-			} else {
+			if (localStorage.getItem("theme") === "dark") {
 				localStorage.setItem("theme", "light");
+			} else {
+				localStorage.setItem("theme", "dark");
 			}
 
 			themeIcon.className = "bi bi-" + (localStorage.getItem("theme") === "dark" ? "sun" : "moon") + "-fill";

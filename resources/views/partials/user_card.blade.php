@@ -2,8 +2,7 @@
 	<div class="row g-0">
 		<div class="col-auto mx-auto">
 			<a href="{{ route('users.show', $user) }}" class="text-decoration-none text-reset">
-				<img src="{{ $user->avatar ? asset('images/' . $user->avatar) : 'https://placehold.co/512' }}" class="img-thumbnail" style="height:12em;width:12em;"
-					alt="User Avatar">
+				<img src="{{ asset('images/' . ($user->avatar ?? 'person.svg')) }}" class="img-thumbnail" style="height:12em;width:12em;" alt="User Avatar">
 			</a>
 		</div>
 		<div class="col">
@@ -22,8 +21,9 @@
 						<small class="text-secondary">
 							<i class="bi bi-x-circle"></i>
 							@if ($user->last_seen)
-								Last seen at
-								<time class="text-secondary" datetime="{{ $user->last_seen }}" title="{{ $user->last_seen }}">{{ $user->last_seen->diffForHumans() }}</time>
+								Last seen
+								<time class="text-secondary" datetime="{{ $user->last_seen }}"
+									title="{{ $user->last_seen }}">{{ Carbon\Carbon::parse($user->last_seen)->diffForHumans() }}</time>
 							@else
 								Offline
 							@endif

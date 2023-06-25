@@ -39,9 +39,10 @@
 			<!-- Right Side Of Navbar -->
 			<ul class="navbar-nav ms-auto">
 
-				<li class="nav-item mx-2" title="Toggle theme">
-					<button class="nav-link px-3" id="theme_toggle" onclick="toggleTheme()">
+				<li class="nav-item" title="Toggle theme">
+					<button type="button" class="nav-link w-100 text-start px-md-4" id="theme_toggle" onclick="toggleTheme()">
 						<i class="bi bi-sun-fill"></i>
+						<span class="d-inline d-md-none">Toggle theme</span>
 					</button>
 				</li>
 

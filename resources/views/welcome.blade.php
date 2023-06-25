@@ -2,6 +2,7 @@
 
 @section('content')
 	<div class="text-center">
+		<img src="{{ asset('logo.svg') }}" alt="Logo">
 		<h1>{{ config('app.name') }}</h1>
 		<p>You can share and like posts and comment on them.</p>
 		<p>

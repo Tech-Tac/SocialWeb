@@ -6,43 +6,50 @@
 @endPushOnce
 <div class="post card my-4 shadow" id="post_{{ $post->id }}">
 	<div class="card-header">
-		@if ($post->group)
-			<a class="fw-bold text-body-emphasis" href="{{ route('groups.show', $post->group) }}">{{ $post->group->name }}</a> >
-		@endif
-		<a class="fw-bold text-body-emphasis" href="{{ route('users.show', $post->user) }}">{{ $post->user->name }}</a>:
-
-		<div class="dropdown float-end">
-			<button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
-			<ul class="dropdown-menu">
-				<li><a class="dropdown-item" href="{{ route('posts.show', $post) }}"><i class="bi bi-eye-fill"></i> Show</a></li>
-				@auth
-					<li><a class="dropdown-item" href><i class="bi bi-flag-fill"></i> Report</a></li>
-				@endauth
-				@if ($post->user->id === Auth::user()->id)
-					<li>
-						<hr class="dropdown-divider">
-					</li>
-					<li><a class="dropdown-item" href="{{ route('posts.edit', $post) }}"><i class="bi bi-pencil-square"></i> Edit</a></li>
-					<li>
-						<form action="{{ route('posts.destroy', $post) }}" method="post">
-							@csrf
-							@method('DELETE')
-							<button type="submit" class="dropdown-item"><i class="bi bi-trash-fill"></i> Delete</button>
-						</form>
-					</li>
+		<div class="row">
+			<div class="col-auto">
+				<img src="{{ asset('images/' . ($post->user->avatar ?? 'person.svg')) }}" alt="User avatar" class="rounded" style="width: 3em;height:3em;">
+			</div>
+			<div class="col p-0">
+				@if ($post->group)
+					<a class="fw-bold text-body-emphasis" href="{{ route('groups.show', $post->group) }}">{{ $post->group->name }}</a>
+					>
 				@endif
-			</ul>
+				<a class="fw-bold text-body-emphasis" href="{{ route('users.show', $post->user) }}">{{ $post->user->name }}</a>
+
+				<time class="text-secondary float-end" datetime="{{ $post->created_at }}" title="{{ $post->created_at }}">{{ $post->created_at->diffForHumans() }}</time>
+				<br>
+				<h5 class="card-title d-inline">{{ $post->title }}</h5>
+				@if ($post->created_at != $post->updated_at)
+					<span class="text-secondary fs-6">
+						edited <time datetime="{{ $post->updated_at }}" title="{{ $post->updated_at }}">{{ $post->updated_at->diffForHumans() }}</time>
+					</span>
+				@endif
+			</div>
+			<div class="dropdown col-auto">
+				<button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+				<ul class="dropdown-menu">
+					<li><a class="dropdown-item" href="{{ route('posts.show', $post) }}"><i class="bi bi-eye-fill"></i> Show</a></li>
+					@auth
+						<li><a class="dropdown-item" href><i class="bi bi-flag-fill"></i> Report</a></li>
+					@endauth
+					@if (Auth::check() && $post->user->id === Auth::user()->id)
+						<li>
+							<hr class="dropdown-divider">
+						</li>
+						<li><a class="dropdown-item" href="{{ route('posts.edit', $post) }}"><i class="bi bi-pencil-square"></i> Edit</a></li>
+						<li>
+							<form action="{{ route('posts.destroy', $post) }}" method="post">
+								@csrf
+								@method('DELETE')
+								<button type="submit" class="dropdown-item"><i class="bi bi-trash-fill"></i> Delete</button>
+							</form>
+						</li>
+					@endif
+				</ul>
+			</div>
 		</div>
 
-		<time class="text-secondary float-end mx-3" datetime="{{ $post->created_at }}"
-			title="{{ $post->created_at }}">{{ $post->created_at->diffForHumans() }}</time>
-		<br>
-		<h5 class="card-title d-inline">{{ $post->title }}</h5>
-		@if ($post->created_at != $post->updated_at)
-			<span class="text-secondary fs-6">
-				edited <time datetime="{{ $post->updated_at }}" title="{{ $post->updated_at }}">{{ $post->updated_at->diffForHumans() }}</time>
-			</span>
-		@endif
 	</div>
 	<div class="card-body">
 		<div class="post-content" {{-- @if (!isset($full) || $full !== true) style=" display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;overflow: hidden;" @endif --}}>
