@@ -8,6 +8,14 @@ A social network application with features like user accounts, friendship system
 
 Made with ❤ by @Tech-Tac.
 
+## Screenshots
+
+![Screenshot](./Screenshots/Screenshot%20(1).png)
+![Screenshot](./Screenshots/Screenshot%20(2).png)
+![Screenshot](./Screenshots/Screenshot%20(3).png)
+![Screenshot](./Screenshots/Screenshot%20(4).png)
+![Screenshot](./Screenshots/Screenshot%20(5).png)
+
 ## Installation
 
 ### Project Dependencies
