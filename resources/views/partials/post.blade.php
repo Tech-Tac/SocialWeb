@@ -13,7 +13,7 @@
 			<div class="col p-0">
 				@if ($post->group)
 					<a class="fw-bold text-body-emphasis" href="{{ route('groups.show', $post->group) }}">{{ $post->group->name }}</a>
-					>
+					&gt;
 				@endif
 				<a class="fw-bold text-body-emphasis" href="{{ route('users.show', $post->user) }}">{{ $post->user->name }}</a>
 

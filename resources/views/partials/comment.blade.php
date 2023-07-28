@@ -48,7 +48,11 @@
 			</ul>
 		</div>
 	</div>
-	<p>{{ $comment->content }}</p>
+	<p class="comment-content">
+		@php
+				echo Str::inlineMarkdown($comment->content, ['html_input' => 'escape']);
+			@endphp
+	</p>
 	@if ($comment->created_at != $comment->updated_at)
 		<time class="text-secondary" datetime="{{ $comment->updated_at }}" title="{{ $comment->updated_at }}">edited
 			{{ $comment->updated_at->diffForHumans() }}</time>

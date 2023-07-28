@@ -6,7 +6,7 @@
 	<hr>
 	<div>
 		<span class="fs-4">Home Feed</span>
-		<span class="text-secondary float-end">{{ count($posts) }} shown posts</span>
+		<span class="text-secondary float-end">{{ count($posts) }} posts shown</span>
 		<br>
 	</div>
 	<div id="posts">
@@ -14,5 +14,5 @@
 			@include('partials.post', ['post', $post])
 		@endforeach
 	</div>
-	<div class="text-center text-secondary">You have reached the end.</div>
+	<div class="text-center text-secondary">You have reached the end, <a href="javascript:location.reload()">refresh</a>.</div>
 @endsection
