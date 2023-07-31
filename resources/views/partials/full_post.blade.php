@@ -13,7 +13,7 @@
 	@endif
 </div>
 <br>
-@auth
+@if(Auth::check()&& (!$post->group || in_array(Auth::user()->id, $post->group->memberships->pluck('user_id')->toArray())))
 	<form class="sticky-bottom row border-top bg-body py-3" style="box-shadow: 0 -0.5rem 1rem rgba(0, 0, 0, 0.15)" action="{{ route('comments.store') }}" method="POST"
 		onsubmit="event.preventDefault();sendComment(this,document.getElementById('post_{{ $post->id }}_comments'))">
 		@csrf
@@ -27,4 +27,4 @@
 			</button>
 		</div>
 	</form>
-@endauth
+@endif

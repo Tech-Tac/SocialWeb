@@ -33,7 +33,7 @@ class CommentController extends Controller
     }
 
     /**
-     * Add a like to a post.
+     * Add a like to a comment.
      */
     public function like(Comment $comment)
     {
@@ -47,7 +47,7 @@ class CommentController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show the comment.
      */
     public function show(Comment $comment)
     {
@@ -59,7 +59,7 @@ class CommentController extends Controller
      */
     public function edit(Comment $comment)
     {
-        //
+        // TODO: add stuff here
     }
 
     /**

@@ -15,7 +15,8 @@
 			<small class="text-secondary">
 				<i class="bi bi-x-circle"></i>
 				@if ($user->last_seen)
-					Last seen at <time class="text-secondary" datetime="{{ $user->last_seen }}" title="{{ $user->last_seen }}">{{ $user->last_seen->diffForHumans() }}</time>
+					Last seen
+					<time class="text-secondary" datetime="{{ $user->last_seen }}" title="{{ $user->last_seen }}">{{ Carbon\Carbon::parse($user->last_seen)->diffForHumans() }}</time>
 				@else
 					Offline
 				@endif

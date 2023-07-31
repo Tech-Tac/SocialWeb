@@ -13,7 +13,7 @@
 /* body {
     background-color: #f4f8ff;
 }
- */
+*/
 
 .post-content pre {
     background-color: #8883;
@@ -47,4 +47,8 @@
 
 .post-content img {
     max-inline-size: 100%;
+}
+
+.comment-replies:not(:has(.comment)) summary {
+    display: none;
 }
