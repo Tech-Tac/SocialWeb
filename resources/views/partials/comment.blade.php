@@ -7,8 +7,10 @@
 <div class="comment card card-body shadow-sm my-3" id="comment_{{ $comment->id }}">
   <div class="header row align-items-center mb-3">
     <div class="col-auto">
-      <img src="{{ asset('images/' . ($comment->user->avatar ?? 'person.svg')) }}" alt="User avatar" class="rounded"
-        style="width: 2.5em;height:2.5em;">
+      <a href="{{ route('users.show', $comment->user) }}">
+        <img src="{{ asset('images/' . ($comment->user->avatar ?? 'person.svg')) }}" alt="User avatar" class="rounded"
+          style="width: 2.5em;height:2.5em;">
+      </a>
     </div>
     <div class="col p-0">
       <a class="fw-bold text-body-emphasis" href="{{ route('users.show', $comment->user) }}">

@@ -10,10 +10,9 @@
 //Bootstrap Icons
 @import "bootstrap-icons/font/bootstrap-icons.min.css";
 
-/* body {
-    background-color: #f4f8ff;
+html {
+    scroll-padding-top: 5em;
 }
-*/
 
 .post-content pre {
     background-color: #8883;
@@ -51,4 +50,25 @@
 
 .comment-replies:not(:has(.comment)) summary {
     display: none;
+}
+
+:target {
+    animation: blink 2s;
+}
+@keyframes blink {
+    25% {
+        background-color: #fd04;
+        opacity: 1;
+    }
+    50% {
+        background-color: unset;
+        opacity: 0.75;
+    }
+    75% {
+        background-color: #fd04;
+        opacity: 1;
+    }
+    100% {
+        background-color: unset;
+    }
 }
