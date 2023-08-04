@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Like;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -29,6 +30,8 @@ class PostController extends Controller
             $like->delete();
         } else {
             Like::create(["user_id" => Auth::user()->id, "post_id" => $post->id]);
+
+            Notification::create(["user_id" => $post->user->id, 'sender_id' => Auth::user()->id, "type" => "post_like", "target_id" => $post->id]);
         }
         return $post->likes->count();
     }

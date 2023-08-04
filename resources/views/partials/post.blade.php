@@ -60,8 +60,7 @@
 
   </div>
   <div class="card-body">
-    <div class="post-content" {{-- @if (!isset($full) || $full !== true)
-			style=" display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;overflow: hidden;" @endif --}}>
+    <div class="post-content">
       @php
         echo Str::markdown($post->content, ['html_input' => 'escape']);
       @endphp
@@ -76,6 +75,25 @@
         <span class="like-count">{{ $post->likes->count() }}</span> Like
       </button>
     @endauth
+    <span class="dropdown">
+      <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="bi bi-people-fill"></i>
+        Likers
+      </button>
+      <ul class="dropdown-menu">
+        @foreach ($post->likes as $like)
+          <li style="min-width: max-content">
+            <a class="dropdown-item" href="{{ route('users.show', $like->user) }}">
+              <img src="{{ asset('images/' . ($like->user->avatar ?? 'person.svg')) }}" alt="User avatar"
+                class="rounded me-1" style="width: 1.5em;height:1.5em;">
+              <span>{{ $like->user->name }}</span>
+              <time class="text-body-secondary float-end display-inline-block ms-3" datetime="{{ $like->created_at }}"
+                title="{{ $like->created_at }}">{{ $like->created_at->diffForHumans() }}</time>
+            </a>
+          </li>
+        @endforeach
+      </ul>
+    </span>
     @if (!isset($full) || $full !== true)
       <button class="btn btn-primary" onclick="viewPost({{ $post->id }})">
         <i class="bi bi-chat-square-fill"></i>

@@ -6,6 +6,7 @@ use App\Models\Comment;
 use App\Models\Like;
 use App\Http\Requests\StoreCommentRequest;
 use App\Http\Requests\UpdateCommentRequest;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -29,6 +30,9 @@ class CommentController extends Controller
             'comment_id' => $request->comment_id,
             'content' => $request->content,
         ]);
+
+        Notification::create(["user_id" => $comment->post->user->id, 'sender_id' => Auth::user()->id, "type" => $comment->comment ? "reply" : "comment", "target_id" => $comment->id]);
+
         return view("partials.comment", compact("comment"));
     }
 
@@ -42,6 +46,8 @@ class CommentController extends Controller
             $like->delete();
         } else {
             Like::create(["user_id" => Auth::user()->id, "comment_id" => $comment->id]);
+
+            Notification::create(["user_id" => $comment->user->id, 'sender_id' => Auth::user()->id, "type" => "comment_like", "target_id" => $comment->id]);
         }
         return $comment->likes->count();
     }

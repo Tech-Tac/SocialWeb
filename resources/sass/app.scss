@@ -58,15 +58,12 @@ html {
 @keyframes blink {
     25% {
         background-color: #fd04;
-        opacity: 1;
     }
     50% {
         background-color: unset;
-        opacity: 0.75;
     }
     75% {
         background-color: #fd04;
-        opacity: 1;
     }
     100% {
         background-color: unset;

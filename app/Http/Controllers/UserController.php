@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Models\User;
 use App\Models\Friendship;
+use App\Models\Notification;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -39,9 +40,11 @@ class UserController extends Controller
         if ($this->sendRequest($user)) {
             Session::flash("message", "Request sent!");
             Session::flash("alert-type", "success");
+            Notification::create(["user_id" => $user->id, 'sender_id' => Auth::user()->id, "type" => "friend_request", "target_id" => $user->id]);
         } elseif ($this->acceptRequest($user)) {
             Session::flash("message", "You are now friends!");
             Session::flash("alert-type", "success");
+            Notification::create(["user_id" => $user->id, 'sender_id' => Auth::user()->id, "type" => "friend_accept", "target_id" => $user->id]);
         } elseif ($this->removeFriend($user)) {
             Session::flash("message", "Removed friend!");
             Session::flash("alert-type", "success");

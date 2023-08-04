@@ -14,10 +14,6 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-/* Route::get('/welcome', function () {
-    return view('welcome');
-})->name('welcome'); */
-
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -43,3 +39,5 @@ Route::post('groups/{group}/join', [App\Http\Controllers\GroupController::class,
 Route::post('groups/{group}/leave', [App\Http\Controllers\GroupController::class, "leave"])->name('groups.leave')->middleware("auth");
 
 Route::get("search", [App\Http\Controllers\SearchController::class, "index"])->name("search");
+
+Route::get("notifications", [App\Http\Controllers\NotificationController::class, "index"])->name("notifications")->middleware("auth");

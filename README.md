@@ -4,7 +4,7 @@
 
 v1.0
 
-A social network application with features like user accounts, friendship system, posts, comments, likes, groups, and more!
+A social network application with features like user accounts, friendship system, posts, comments, likes, groups, notifications, and more!
 
 Made with ❤ by @Tech-Tac.
 
