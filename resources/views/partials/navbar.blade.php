@@ -10,8 +10,19 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
       <!-- Left Side Of Navbar -->
       <ul class="navbar-nav me-auto">
+        <form class="d-flex" role="search" action="{{ route('search') }}">
+          <div class="input-group">
+            <input class="form-control" name="q" type="search" required placeholder="Search..."
+              aria-label="Search" value="{{ request()->get('q') }}">
+            <button class="btn btn-light border border-start-0" type="submit">
+              <i class="bi bi-search"></i>
+            </button>
+          </div>
+        </form>
+
         <li class="nav-item">
           <a class="nav-link" href="{{ route('users.index') }}">
             <i class="bi bi-person-fill"></i>
@@ -25,16 +36,6 @@
           </a>
         </li>
       </ul>
-
-      <form class="d-flex" role="search" action="{{ route('search') }}">
-        <div class="input-group">
-          <input class="form-control" name="q" type="search" required placeholder="Search..." aria-label="Search"
-            value="{{ request()->get('q') }}">
-          <button class="btn btn-light border border-start-0" type="submit">
-            <i class="bi bi-search"></i>
-          </button>
-        </div>
-      </form>
 
       <!-- Right Side Of Navbar -->
       <ul class="navbar-nav ms-auto">

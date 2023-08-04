@@ -1,18 +1,18 @@
 <div class="card my-3">
   <div class="row g-0">
-    <div class="col-auto mx-auto">
+    <div class="col-auto">
       <a href="{{ route('users.show', $user) }}" class="text-decoration-none text-reset">
         <img src="{{ asset('images/' . ($user->avatar ?? 'person.svg')) }}" class="img-thumbnail"
-          style="height:12em;width:12em;" alt="User Avatar">
+          style="height:10em;width:10em;" alt="User Avatar">
       </a>
     </div>
     <div class="col">
       <div class="card-body">
-        <a href="{{ route('users.show', $user) }}" class="text-decoration-none text-reset">
+        <a href="{{ route('users.show', $user) }}" class="text-decoration-none text-reset text-truncate">
           <h5 class="card-title">{{ $user->name }}</h5>
         </a>
         <p class="card-text text-truncate">{{ $user->about }}</p>
-        <span class="card-text">
+        <span class="card-text float-start">
           @if ($user->online)
             <small class="text-success">
               <i class="bi bi-circle-fill"></i>

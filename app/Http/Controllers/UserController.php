@@ -40,7 +40,7 @@ class UserController extends Controller
         if ($this->sendRequest($user)) {
             Session::flash("message", "Request sent!");
             Session::flash("alert-type", "success");
-            Notification::create(["user_id" => $user->id, 'sender_id' => Auth::user()->id, "type" => "friend_request", "target_id" => $user->id]);
+            Notification::create(["user_id" => $user->id, 'sender_id' => Auth::user()->id, "type" => "friend_request", "target_id" => Auth::user()->id]);
         } elseif ($this->acceptRequest($user)) {
             Session::flash("message", "You are now friends!");
             Session::flash("alert-type", "success");

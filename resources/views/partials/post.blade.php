@@ -13,7 +13,7 @@
             style="width: 3em;height:3em;">
         </a>
       </div>
-      <div class="col p-0">
+      <div class="col p-0 pe-5">
         @if ($post->group)
           <a class="fw-bold text-body-emphasis"
             href="{{ route('groups.show', $post->group) }}">{{ $post->group->name }}</a>
@@ -32,7 +32,7 @@
           </span>
         @endif
       </div>
-      <div class="dropdown col-auto p-0">
+      <div class="dropdown position-absolute end-0 top-0 me-2 mt-2 col-auto p-0">
         <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
         <ul class="dropdown-menu">
           <li><a class="dropdown-item" href="{{ route('posts.show', $post) }}"><i class="bi bi-eye-fill"></i> Show</a>

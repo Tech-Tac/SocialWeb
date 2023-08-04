@@ -7,6 +7,7 @@
       'reply' => ['icon' => 'chat-square-quote-fill', 'link' => fn($t) => route('comments.show', $t), 'text' => fn($s, $t) => "$s replied \"$t->content\" to your comment \"" . $t->comment->content . '"'],
       'friend_request' => ['icon' => 'person-plus-fill', 'link' => fn($t) => route('users.show', $t), 'text' => fn($s, $t) => "$s sent you a friend request"],
       'friend_accept' => ['icon' => 'person-check-fill', 'link' => fn($t) => route('users.show', $t), 'text' => fn($s, $t) => "$s accepted your friend request"],
+      'invite' => ['icon' => 'reply-fill', 'link' => fn($t) => route('groups.show', $t), 'text' => fn($s, $t) => "$s invited you to join \"$t->name\""],
   ];
 @endphp
 @section('content')

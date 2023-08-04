@@ -149,6 +149,6 @@ class GroupController extends Controller
         $group->delete();
         Session::flash('message', 'Group deleted successfully!');
         Session::flash("alert-type", "success");
-        return redirect()->back();
+        return redirect(route("groups.index"));
     }
 }

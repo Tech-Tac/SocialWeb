@@ -13,7 +13,7 @@
       <a class="fw-bold text-body-emphasis" href="{{ route('groups.show', $group) }}">{{ $group->name }}</a> &gt;
     @endif
     <a class="fw-bold text-body-emphasis" href="{{ route('users.show', Auth::user()) }}">{{ Auth::user()->name }}</a>
-    <input type="text" class="form-control" required name="title" maxlength="255" placeholder="Post Tile"
+    <input type="text" class="form-control" required name="title" maxlength="255" placeholder="Post Title"
       value="{{ isset($post) ? $post->title : '' }}">
   </div>
   <div class="card-body position-relative">
